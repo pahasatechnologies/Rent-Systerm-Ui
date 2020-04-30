@@ -22,7 +22,7 @@
     "@angular/router": "^8.2.14",
     "@ng-bootstrap/ng-bootstrap": "^4.2.2",
     "core-js": "^2.6.10",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-angular8-datatable": "^0.9.11",
     "ngx-loading": "^8.0.0",
     "ngx-toastr": "^11.2.1",
