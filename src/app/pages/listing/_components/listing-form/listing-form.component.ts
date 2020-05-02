@@ -274,6 +274,13 @@ export class ListingFormComponent implements OnInit, AfterContentInit {
   }
 
   getUrl(media: any) {
+    if (
+      media.url.indexOf("http://") == 0 ||
+      media.url.indexOf("https://") == 0
+    ) {
+      // do something here
+      return media.url;
+    }
     return environment.baseUrl + media.url;
   }
 
