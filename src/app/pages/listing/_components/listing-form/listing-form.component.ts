@@ -202,6 +202,15 @@ export class ListingFormComponent implements OnInit, AfterContentInit {
       this.listing.longitude = marker.getPosition().lng();
     });
 
+    google.maps.event.addListener(marker, "dragend", () => {
+      this.getAddressFromLatLang({
+        coords: {
+          latitude: marker.getPosition().lat(),
+          longitude: marker.getPosition().lng(),
+        },
+      }, this.parseAddress);
+    });
+
     this._loaderService.displayLoader(false);
   }
 
@@ -229,7 +238,7 @@ export class ListingFormComponent implements OnInit, AfterContentInit {
     this.listing.pincode = this.listing.pincode || resObj.pincode;
   }
 
-  getAddressFromLatLang(position) {
+  getAddressFromLatLang(position, callback=this.parseInitalAddress) {
     var latlng = {
       lat: parseFloat(position.coords.latitude),
       lng: parseFloat(position.coords.longitude),
@@ -240,7 +249,8 @@ export class ListingFormComponent implements OnInit, AfterContentInit {
         if (results[0]) {
           this.listing.address = results[0].formatted_address;
           console.log(this.listing.address);
-          this.parseInitalAddress(this.listing.address);
+          callback.call(this, this.listing.address);
+          // callback(this.listing.address);
         }
       } else {
         this.logger.error(
