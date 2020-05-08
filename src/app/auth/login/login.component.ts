@@ -45,25 +45,29 @@ export class LoginComponent implements OnInit {
 
     this.loginForm = this.fb.group({
       email: ["", [Validators.required, ValidationService.emailValidator]],
-      password: ["", [Validators.required, Validators.minLength(6)]]
+      password: ["", [Validators.required, Validators.minLength(6)]],
     });
   }
 
   signIn() {
     console.log(this.loginForm);
+    this.error = "";
     if (this.loginForm.dirty && this.loginForm.valid) {
       //this._authService.login(this.model.email, this.model.password)
       //this._router.navigate([this.returnUrl]);
       this._authService.onLogin(this.loginForm.value).subscribe(
-        response => {
+        (response) => {
           // get return url from route parameters or default to '/'
           this.logger.success("Logged in successfully");
           this._router.navigate([this.returnUrl]);
           this.loginForm.reset();
         },
-        error => {
-          this.error = error.error;
-          this.logger.error("Invalid mobile or password ");
+        (error) => {
+          console.error(error);
+          if (error.status === 422) {
+            this.error = error.error.data;
+          }
+          this.logger.error(this.error);
         }
       );
       // Clear form fields

@@ -3,6 +3,9 @@
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
       <div class="card card-signin my-5">
         <div class="card-body">
+          <p *ngIf="message" class="text-center">
+            {{ message }}
+          </p>
           <h5 class="card-title text-center">Sign Up</h5>
           <form
             class="form-signin"
@@ -46,7 +49,7 @@
                 "
                 class="help-block p-2"
               >
-                <div style="color: red" *ngIf="f.first_name.errors.required">
+                <div style="color: red;" *ngIf="f.first_name.errors.required">
                   First Name is required
                 </div>
               </div>
@@ -86,7 +89,7 @@
                 "
                 class="help-block p-2"
               >
-                <div style="color: red" *ngIf="f.last_name.errors.required">
+                <div style="color: red;" *ngIf="f.last_name.errors.required">
                   Last Name is required
                 </div>
               </div>
@@ -122,11 +125,11 @@
                 "
                 class="help-block p-2"
               >
-                <div style="color: red" *ngIf="f.email.errors.required">
+                <div style="color: red;" *ngIf="f.email.errors.required">
                   Email is required
                 </div>
                 <div
-                  style="color: red"
+                  style="color: red;"
                   *ngIf="f.email.errors.invalidEmailAddress"
                 >
                   Email is invalid
@@ -135,40 +138,43 @@
             </div>
 
             <div
-            class="form-label-group"
-            [ngClass]="{
-              'has-danger':
-                f.phone.invalid &&
-                (f.phone.dirty || f.phone.touched || rgForm.submitted),
-              'has-success':
-                f.phone.valid &&
-                (f.phone.dirty || f.phone.touched || rgForm.submitted)
-            }"
-          >
-            <input
-              type="phone"
-              id="inputPhone"
-              formControlName="phone"
-              class="form-control"
-              placeholder="phone no"
-            />
-            <label for="inputPhone">Phone no.</label>
-            <!-- <control-messages
+              class="form-label-group"
+              [ngClass]="{
+                'has-danger':
+                  f.phone.invalid &&
+                  (f.phone.dirty || f.phone.touched || rgForm.submitted),
+                'has-success':
+                  f.phone.valid &&
+                  (f.phone.dirty || f.phone.touched || rgForm.submitted)
+              }"
+            >
+              <input
+                type="phone"
+                id="inputPhone"
+                formControlName="phone"
+                class="form-control"
+                placeholder="phone no"
+              />
+              <label for="inputPhone">Phone no.</label>
+              <!-- <control-messages
                   [control]="f.phone"
                 ></control-messages> -->
 
-            <div
-              *ngIf="
-                (f.phone.dirty || f.phone.touched || rgForm.submitted) &&
-                f.phone.errors
-              "
-              class="help-block p-2"
-            >
-              <div style="color: red" *ngIf="f.phone.errors.required">
-                Phone is required
+              <div
+                *ngIf="
+                  (f.phone.dirty || f.phone.touched || rgForm.submitted) &&
+                  f.phone.errors
+                "
+                class="help-block p-2"
+              >
+                <div style="color: red;" *ngIf="f.phone.errors.required">
+                  Phone is required
+                </div>
+                <div style="color: red;" *ngIf="f.phone.errors.pattern">
+                  Invalid Phone
+                </div>
               </div>
             </div>
-          </div>
 
             <div
               class="form-label-group"
@@ -202,11 +208,11 @@
                 "
                 class="help-block p-2"
               >
-                <div style="color: red" *ngIf="f.password.errors.required">
+                <div style="color: red;" *ngIf="f.password.errors.required">
                   Password is required
                 </div>
 
-                <div style="color: red" *ngIf="f.password.errors.minlength">
+                <div style="color: red;" *ngIf="f.password.errors.minlength">
                   Minimum 6 characters
                 </div>
               </div>
@@ -249,14 +255,14 @@
                 class="help-block p-2"
               >
                 <div
-                  style="color: red"
+                  style="color: red;"
                   *ngIf="f.password_confirmation.errors.required"
                 >
                   Password confirmation is required
                 </div>
 
                 <div
-                  style="color: red"
+                  style="color: red;"
                   *ngIf="f.password_confirmation.errors.isMatching"
                 >
                   Password mismatch
@@ -297,7 +303,7 @@
                 "
                 class="help-block p-2"
               >
-                <div style="color: red" *ngIf="f.role.errors.required">
+                <div style="color: red;" *ngIf="f.role.errors.required">
                   Type is required
                 </div>
               </div>

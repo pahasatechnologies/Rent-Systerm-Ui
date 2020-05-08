@@ -1,3 +1,19 @@
 .testimonial-inner {
   padding: 30px;
 }
+
+.hero-image-wrapper {
+  position: relative;
+}
+
+.hero-image-src::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: rgba(0, 0, 0, .6); */
+  background-image: linear-gradient(120deg,  #33d0ff, #000000, #eaee44);
+  opacity: .5;
+}

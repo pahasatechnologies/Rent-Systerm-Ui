@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { SharedModule } from '../shared/shared.module';
 import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResponsePasswordResetComponent } from './response-password-reset/response-password-reset.component';
 
 @NgModule({
   imports: [
@@ -12,6 +14,6 @@ import { RegisterComponent } from './register/register.component';
     AuthRoutingModule,
     SharedModule
   ],
-  declarations: [LoginComponent, LogoutComponent, RegisterComponent]
+  declarations: [LoginComponent, LogoutComponent, RegisterComponent, ForgotPasswordComponent, ResponsePasswordResetComponent]
 })
 export class AuthModule { }

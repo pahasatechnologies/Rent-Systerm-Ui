@@ -12,12 +12,13 @@ import { ToastrService } from "ngx-toastr";
   // encapsulation: ViewEncapsulation.None
 })
 export class RegisterComponent implements OnInit {
+  message: string = "";
   error: any;
   returnUrl: string;
   registerForm: FormGroup;
   roles: { label: string; value: string }[] = [
     { label: "Tenant", value: "tenant" },
-    { label: "Landlord", value: "landlord" }
+    { label: "Landlord", value: "landlord" },
   ];
 
   get f() {
@@ -50,29 +51,31 @@ export class RegisterComponent implements OnInit {
       first_name: ["", Validators.required],
       last_name: ["", Validators.required],
       email: ["", [Validators.required, ValidationService.emailValidator]],
-      phone: ["", [Validators.required]],
+      phone: ["", [Validators.required, Validators.pattern("^[6-9]\\d{9}$")]],
       password: ["", [Validators.required, Validators.minLength(6)]],
       password_confirmation: [
         "",
-        [Validators.required, ValidationService.matchValues("password")]
+        [Validators.required, ValidationService.matchValues("password")],
       ],
-      role: [this.roles[0].value, Validators.required]
+      role: [this.roles[0].value, Validators.required],
     });
   }
 
   signUp() {
     console.log(this.registerForm);
+    this.message = "";
     if (this.registerForm.dirty && this.registerForm.valid) {
       //this._authService.login(this.model.email, this.model.password)
       //this._router.navigate([this.returnUrl]);
       this._authService.onRegister(this.registerForm.value).subscribe(
-        response => {
+        (response) => {
           // get return url from route parameters or default to '/'
           this._router.navigate([this.returnUrl]);
-          this.logger.success("You are registered successfully");
+          this.message = "Please check your inbox for verification link";
+          this.logger.success(this.message);
           this.registerForm.reset();
         },
-        error => {
+        (error) => {
           this.error = error.error;
           this.logger.error("Invalid Data", "Error");
         }
