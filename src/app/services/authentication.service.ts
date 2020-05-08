@@ -65,7 +65,18 @@ export class AuthenticationService {
         }
         return response;
       }),
-      catchError((error) => this.handleError(error))
+      catchError((error) => {
+        console.log("status", error.status);
+        if (error.status === 422) {
+          console.log("error.data", error);
+          const token: string = error.error["access_token"];
+          // If we have a token, proceed
+          if (token) {
+            this.setSessionToken(token);
+          }
+        }
+        return this.handleError(error);
+      })
     );
   }
 
@@ -103,12 +114,49 @@ export class AuthenticationService {
       );
   }
 
+  onResendVerificationMail() {
+    const authToken = this.getSessionToken();
+    if (!authToken)
+      return throwError("something wrong happen here; please try again later.");
+    const authReq = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${authToken}`,
+        "Content-Type": "application/json",
+      }),
+    };
+
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     "Content-Type": "application/json",
+    //   }),
+    // };
+
+    return this.http.get(`${environment.apiUrl}/email/resend`, authReq).pipe(
+      map((res: any) => {
+        return res;
+      }),
+      catchError((error) => this.handleError(error))
+    );
+  }
+
   setToken(token: string): void {
     return localStorage.setItem("token", token);
   }
 
+  setSessionToken(token: string): void {
+    return sessionStorage.setItem("token", token);
+  }
+
   getToken(): string {
     return localStorage.getItem("token");
+  }
+
+  getSessionToken(): string {
+    return sessionStorage.getItem("token");
+  }
+
+  removeSessionToken() {
+     sessionStorage.removeItem("token");
   }
 
   getUser(): Observable<User> {

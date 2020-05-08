@@ -7,7 +7,7 @@
           <p *ngIf="error">
             {{ error }}
             <span
-              >Click here to &nbsp;<a href="javascript:;">Resend email</a>
+              >Click here to &nbsp;<a href="javascript:;" (click)="sendVerificationMail()">Resend email</a>
             </span>
           </p>
           <form

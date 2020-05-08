@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
-    console.log(this.loginForm);
     this.error = "";
     if (this.loginForm.dirty && this.loginForm.valid) {
       //this._authService.login(this.model.email, this.model.password)
@@ -63,7 +62,6 @@ export class LoginComponent implements OnInit {
           this.loginForm.reset();
         },
         (error) => {
-          console.error(error);
           if (error.status === 422) {
             this.error = error.error.data;
           }
@@ -72,5 +70,20 @@ export class LoginComponent implements OnInit {
       );
       // Clear form fields
     }
+  }
+
+  sendVerificationMail() {
+    this._authService.onResendVerificationMail().subscribe(
+      (response) => {
+        // get return url from route parameters or default to '/'
+        this._authService.removeSessionToken();
+        this._router.navigate([this.returnUrl]);
+        this.loginForm.reset();
+        this.logger.success(response.message);
+      },
+      (error) => {
+        this.logger.error(this.error);
+      }
+    );
   }
 }
