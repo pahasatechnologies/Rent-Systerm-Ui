@@ -139,6 +139,15 @@ export class AuthenticationService {
     );
   }
 
+  onVerifyEmail(link: string) {
+    return this.http.get(link).pipe(
+      map((res: any) => {
+        return res;
+      }),
+      catchError((error) => this.handleError(error))
+    );
+  }
+
   setToken(token: string): void {
     return localStorage.setItem("token", token);
   }

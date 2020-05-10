@@ -6,6 +6,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResponsePasswordResetComponent } from './response-password-reset/response-password-reset.component';
+import { EmailVerifyComponent } from './email-verify/email-verify.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: 'response-password-reset',
         component: ResponsePasswordResetComponent
+      },
+      {
+        path: 'verify-email',
+        component: EmailVerifyComponent
       },
       {
         path: 'logout',

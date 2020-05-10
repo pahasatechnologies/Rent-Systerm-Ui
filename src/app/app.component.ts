@@ -6,7 +6,7 @@ import { LoaderService } from "./services/loader.service";
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
   title = "rent-management";
@@ -17,9 +17,11 @@ export class AppComponent {
     this.loadingSubscription = this.loaderService.loaderStatus.subscribe(
       (val: boolean) => {
         console.log("isSpinnerVisible", val);
-        setTimeout(() => {
-          this.loading = val;
-        });
+        // if (this.loading != val) {
+          setTimeout(() => {
+            this.loading = val;
+          });
+        // }
       }
     );
   }

@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
           this.logger.success("Logged in successfully");
           this._router.navigate([this.returnUrl]);
           this.loginForm.reset();
+          this.resetForm(this.loginForm);
         },
         (error) => {
           if (error.status === 422) {
@@ -73,17 +74,26 @@ export class LoginComponent implements OnInit {
   }
 
   sendVerificationMail() {
+    this.error = '';
     this._authService.onResendVerificationMail().subscribe(
       (response) => {
         // get return url from route parameters or default to '/'
         this._authService.removeSessionToken();
-        this._router.navigate([this.returnUrl]);
         this.loginForm.reset();
+        this.resetForm(this.loginForm);
         this.logger.success(response.message);
       },
       (error) => {
         this.logger.error(this.error);
       }
     );
+  }
+
+  resetForm(form: FormGroup) {
+    form.reset();
+
+    Object.keys(form.controls).forEach((key) => {
+      form.get(key).setErrors(null);
+    });
   }
 }

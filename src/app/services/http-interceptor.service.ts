@@ -9,7 +9,7 @@ import {
   HttpHandler,
   HttpRequest,
   HttpErrorResponse,
-  HttpResponse
+  HttpResponse,
 } from "@angular/common/http";
 import { AuthenticationService } from "./authentication.service";
 import { LoaderService } from "./loader.service";
@@ -17,7 +17,7 @@ import { ToastrService } from "ngx-toastr";
 
 // App import
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class AppHttpInterceptorService implements HttpInterceptor {
   constructor(
@@ -31,45 +31,43 @@ export class AppHttpInterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    // this.loaderService.displayLoader(true);
-
+    this.loaderService.displayLoader(true);
     // Get the token from auth service.
     const authToken = this.auth.getToken();
     if (authToken) {
       // Clone the request to add the new header.
       const authReq = req.clone({
-        headers: req.headers.set("Authorization", `Bearer ${authToken}`)
+        headers: req.headers.set("Authorization", `Bearer ${authToken}`),
       });
-
       // send the newly created request
-      return next.handle(authReq).pipe(
-        tap(
-          (event: HttpEvent<any>) => {
-            if (event instanceof HttpResponse) {
-              // this.loaderService.displayLoader(false);
-              // Response wiht HttpResponse type
-            }
-          },
-          (err: any) => {
-            if (err instanceof HttpErrorResponse) {
-              if (err.status === 401) {
-                console.log("err", err);
-                this.logger.error(err.error.message);
-                localStorage.removeItem("token");
-                console.log("UNAUTHHHHH");
-                // this.loaderService.displayLoader(false);
-                this.router.navigate(["/"]);
-              }
-              // this.loaderService.displayLoader(false);
-            }
-            // this.loaderService.displayLoader(false);
-            return next.handle(req);
-          }
-        )
-      );
+      return this.handleRequest(authReq, next);
     } else {
-      return next.handle(req);
-      // this.loaderService.displayLoader(false);
+      return this.handleRequest(req, next);
     }
+  }
+
+  private handleRequest(req: HttpRequest<any>, next: HttpHandler) {
+    return next.handle(req).pipe(
+      tap(
+        (event: HttpEvent<any>) => {
+          if (event instanceof HttpResponse) {
+            // Response wiht HttpResponse type
+            this.loaderService.displayLoader(false);
+          }
+        },
+        (err: any) => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              console.log("err", err);
+              this.logger.error(err.error.message);
+              localStorage.removeItem("token");
+              this.router.navigate(["/"]);
+            }
+          }
+          this.loaderService.displayLoader(false);
+          return next.handle(req);
+        }
+      )
+    );
   }
 }
