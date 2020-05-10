@@ -25,9 +25,14 @@
                       ><i class="fa fa-location-arrow"></i
                     ></span>
                     <input
-                      type="text" id="search-location" [(ngModel)]="searchLocation" [ngbTypeahead]="search"
-                      class="form-control no-border form-control-xl" name="searchLocation"
-                      placeholder="Type your address ..." required
+                      type="text"
+                      id="search-location"
+                      [(ngModel)]="searchLocation"
+                      [ngbTypeahead]="search"
+                      class="form-control no-border form-control-xl"
+                      name="searchLocation"
+                      placeholder="Type your address ..."
+                      required
                     />
                   </div>
                   <!-- /.form-group -->
@@ -50,12 +55,20 @@
     </div>
     <!-- /.hero-image-inner -->
     <div class="hero-image-categories">
-      <a [routerLink]="['/app/listing/list']" [queryParams]="{ category: 1}" class="hero-image-category">
+      <a
+        [routerLink]="['/app/listing/list']"
+        [queryParams]="{ category: 1 }"
+        class="hero-image-category"
+      >
         <i class="fa fa-map-o"></i>
         <strong>Residential</strong> </a
       ><!-- /.hero-image-category -->
 
-      <a [routerLink]="['/app/listing/list']" [queryParams]="{ category: 2}" class="hero-image-category">
+      <a
+        [routerLink]="['/app/listing/list']"
+        [queryParams]="{ category: 2 }"
+        class="hero-image-category"
+      >
         <i class="fa fa-handshake-o"></i>
         <strong>Commercial</strong> </a
       ><!-- /.hero-image-category -->
@@ -146,139 +159,168 @@
           <div class="page-header">
             <h2>Testimonials</h2>
 
-          <!-- /.carousel-fullwidth -->
-          <div class="carousel-fullwidth">
-            <div class="carousel-fullwidth-inner">
-              <div class="testimonials-wrapper">
-                <div class="row">
-                  <div class="col-lg-4 push-lg-4">
-                    <div class="testimonials">
-                      <div class="testimonial-inner">
-                        <blockquote>
-                          Aenean porta sem a nulla vehicula commodo. Quisque
-                          eleifend mollis tincidunt. Phasellus purus leo,
-                          facilisis in egestas non, gravida non felis. Nullam
-                          sit amet vestibulum leo.
-                        </blockquote>
-                        <div class="testimonial-user">
-                          <span
-                            class="testimonial-user-avatar"
-                            style="
-                              background-image: url('assets/img/tmp/user-1.jpg');
-                            "
-                          ></span>
-                          <span class="testimonial-user-name">
-                            <strong>Barbara B. Reid</strong>
-                            <span>CEO at Super Company</span>
-                          </span>
+            <!-- /.carousel-fullwidth -->
+            <div class="carousel-fullwidth">
+              <div class="carousel-fullwidth-inner">
+                <div class="testimonials-wrapper">
+                  <div class="row">
+                    <div class="col-lg-4 push-lg-4">
+                      <div class="testimonials">
+                        <div class="testimonial-inner">
+                          <blockquote>
+                            Aenean porta sem a nulla vehicula commodo. Quisque
+                            eleifend mollis tincidunt. Phasellus purus leo,
+                            facilisis in egestas non, gravida non felis. Nullam
+                            sit amet vestibulum leo.
+                          </blockquote>
+                          <div class="testimonial-user">
+                            <span
+                              class="testimonial-user-avatar"
+                              style="
+                                background-image: url('assets/img/tmp/user-1.jpg');
+                              "
+                            ></span>
+                            <span class="testimonial-user-name">
+                              <strong>Barbara B. Reid</strong>
+                              <span>CEO at Super Company</span>
+                            </span>
+                          </div>
+                          <!-- /.testimonial-user -->
                         </div>
-                        <!-- /.testimonial-user -->
-                      </div>
-                      <!-- /.testimonial-inner -->
-                      <div class="testimonial-inner">
-                        <blockquote>
-                          Aenean porta sem a nulla vehicula commodo. Quisque
-                          eleifend mollis tincidunt. Phasellus purus leo,
-                          facilisis in egestas non, gravida non felis. Nullam
-                          sit amet vestibulum leo.
-                        </blockquote>
-                        <div class="testimonial-user">
-                          <span
-                            class="testimonial-user-avatar"
-                            style="
-                              background-image: url('assets/img/tmp/user-2.jpg');
-                            "
-                          ></span>
-                          <span class="testimonial-user-name">
-                            <strong>Barbara B. Reid</strong>
-                            <span>CEO at Super Company</span>
-                          </span>
+                        <!-- /.testimonial-inner -->
+                        <div class="testimonial-inner">
+                          <blockquote>
+                            Aenean porta sem a nulla vehicula commodo. Quisque
+                            eleifend mollis tincidunt. Phasellus purus leo,
+                            facilisis in egestas non, gravida non felis. Nullam
+                            sit amet vestibulum leo.
+                          </blockquote>
+                          <div class="testimonial-user">
+                            <span
+                              class="testimonial-user-avatar"
+                              style="
+                                background-image: url('assets/img/tmp/user-2.jpg');
+                              "
+                            ></span>
+                            <span class="testimonial-user-name">
+                              <strong>Barbara B. Reid</strong>
+                              <span>CEO at Super Company</span>
+                            </span>
+                          </div>
+                          <!-- /.testimonial-user -->
                         </div>
-                        <!-- /.testimonial-user -->
-                      </div>
-                      <!-- /.testimonial-inner -->
-                      <div class="testimonial-inner">
-                        <blockquote>
-                          Aenean porta sem a nulla vehicula commodo. Quisque
-                          eleifend mollis tincidunt. Phasellus purus leo,
-                          facilisis in egestas non, gravida non felis. Nullam
-                          sit amet vestibulum leo.
-                        </blockquote>
-                        <div class="testimonial-user">
-                          <span
-                            class="testimonial-user-avatar"
-                            style="
-                              background-image: url('assets/img/tmp/user-3.jpg');
-                            "
-                          ></span>
-                          <span class="testimonial-user-name">
-                            <strong>Barbara B. Reid</strong>
-                            <span>CEO at Super Company</span>
-                          </span>
+                        <!-- /.testimonial-inner -->
+                        <div class="testimonial-inner">
+                          <blockquote>
+                            Aenean porta sem a nulla vehicula commodo. Quisque
+                            eleifend mollis tincidunt. Phasellus purus leo,
+                            facilisis in egestas non, gravida non felis. Nullam
+                            sit amet vestibulum leo.
+                          </blockquote>
+                          <div class="testimonial-user">
+                            <span
+                              class="testimonial-user-avatar"
+                              style="
+                                background-image: url('assets/img/tmp/user-3.jpg');
+                              "
+                            ></span>
+                            <span class="testimonial-user-name">
+                              <strong>Barbara B. Reid</strong>
+                              <span>CEO at Super Company</span>
+                            </span>
+                          </div>
+                          <!-- /.testimonial-user -->
                         </div>
-                        <!-- /.testimonial-user -->
-                      </div>
-                      <!-- /.testimonial-inner -->
-                      <div class="testimonial-inner">
-                        <blockquote>
-                          Aenean porta sem a nulla vehicula commodo. Quisque
-                          eleifend mollis tincidunt. Phasellus purus leo,
-                          facilisis in egestas non, gravida non felis. Nullam
-                          sit amet vestibulum leo.
-                        </blockquote>
-                        <div class="testimonial-user">
-                          <span
-                            class="testimonial-user-avatar"
-                            style="
-                              background-image: url('assets/img/tmp/user-4.jpg');
-                            "
-                          ></span>
-                          <span class="testimonial-user-name">
-                            <strong>Barbara B. Reid</strong>
-                            <span>CEO at Super Company</span>
-                          </span>
+                        <!-- /.testimonial-inner -->
+                        <div class="testimonial-inner">
+                          <blockquote>
+                            Aenean porta sem a nulla vehicula commodo. Quisque
+                            eleifend mollis tincidunt. Phasellus purus leo,
+                            facilisis in egestas non, gravida non felis. Nullam
+                            sit amet vestibulum leo.
+                          </blockquote>
+                          <div class="testimonial-user">
+                            <span
+                              class="testimonial-user-avatar"
+                              style="
+                                background-image: url('assets/img/tmp/user-4.jpg');
+                              "
+                            ></span>
+                            <span class="testimonial-user-name">
+                              <strong>Barbara B. Reid</strong>
+                              <span>CEO at Super Company</span>
+                            </span>
+                          </div>
+                          <!-- /.testimonial-user -->
                         </div>
-                        <!-- /.testimonial-user -->
-                      </div>
-                      <!-- /.testimonial-inner -->
-                      <div class="testimonial-inner">
-                        <blockquote>
-                          Aenean porta sem a nulla vehicula commodo. Quisque
-                          eleifend mollis tincidunt. Phasellus purus leo,
-                          facilisis in egestas non, gravida non felis. Nullam
-                          sit amet vestibulum leo.
-                        </blockquote>
-                        <div class="testimonial-user">
-                          <span
-                            class="testimonial-user-avatar"
-                            style="
-                              background-image: url('assets/img/tmp/user-5.jpg');
-                            "
-                          ></span>
-                          <span class="testimonial-user-name">
-                            <strong>Barbara B. Reid</strong>
-                            <span>CEO at Super Company</span>
-                          </span>
+                        <!-- /.testimonial-inner -->
+                        <div class="testimonial-inner">
+                          <blockquote>
+                            Aenean porta sem a nulla vehicula commodo. Quisque
+                            eleifend mollis tincidunt. Phasellus purus leo,
+                            facilisis in egestas non, gravida non felis. Nullam
+                            sit amet vestibulum leo.
+                          </blockquote>
+                          <div class="testimonial-user">
+                            <span
+                              class="testimonial-user-avatar"
+                              style="
+                                background-image: url('assets/img/tmp/user-5.jpg');
+                              "
+                            ></span>
+                            <span class="testimonial-user-name">
+                              <strong>Barbara B. Reid</strong>
+                              <span>CEO at Super Company</span>
+                            </span>
+                          </div>
+                          <!-- /.testimonial-user -->
                         </div>
-                        <!-- /.testimonial-user -->
+                        <!-- /.testimonial-inner -->
                       </div>
-                      <!-- /.testimonial-inner -->
+                      <!-- /.testimonials -->
                     </div>
-                    <!-- /.testimonials -->
+                    <!-- /.col-* -->
                   </div>
-                  <!-- /.col-* -->
+                  <!-- /.row -->
                 </div>
-                <!-- /.row -->
               </div>
+              <!-- /.carousel-fullwidth-inner -->
             </div>
-            <!-- /.carousel-fullwidth-inner -->
           </div>
+          <!-- /.content -->
         </div>
-        <!-- /.content -->
+        <!-- /.container -->
       </div>
-      <!-- /.container -->
+      <!-- /.main-inner -->
     </div>
-    <!-- /.main-inner -->
+    <!-- /.main -->
   </div>
-  <!-- /.main -->
+
+  <app-modal-basic #subscriptionModal>
+    <h2 class="app-modal-header">Subscribe to our Newsletter</h2>
+    <div class="app-modal-body">
+      <div class="overview">
+        <form #f="ngForm" (submit)="onSubscribe()">
+          <div class="single">
+            <!-- <h2>Subscribe to our Newsletter</h2> -->
+            <div class="input-group">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Enter your email"
+                name="email"
+                [(ngModel)]="subcription.email"
+              />
+              <span class="input-group-btn">
+                <button class="btn btn-theme" type="submit">Subscribe</button>
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="app-modal-footer text-right">
+      <button class="btn btn-danger btn-sm" (click)="hideModal()">Close</button>
+    </div>
+  </app-modal-basic>
 </div>

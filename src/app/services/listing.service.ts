@@ -224,6 +224,17 @@ export class ListingService {
       );
   }
 
+  onSubscribe(data: {email:string}) {
+    return this.http
+      .post(`${environment.apiUrl}/subscriptions/create`, data, httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError(error => this.handleError(error))
+      );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side error.

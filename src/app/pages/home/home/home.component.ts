@@ -5,6 +5,7 @@ import {
   OnInit,
   AfterContentInit,
   AfterViewInit,
+  ViewChild,
 } from "@angular/core";
 import { Listing } from "src/app/models/Listing";
 import { ListingService } from "../../../services/listing.service";
@@ -23,6 +24,8 @@ import {
 import { Category } from "src/app/models/Category";
 import { fromEvent, Observable } from "rxjs";
 import { Router } from "@angular/router";
+import { ModalBasicComponent } from "src/app/shared/components/modal-basic/modal-basic.component";
+import { ToastrService } from 'ngx-toastr';
 
 declare var $: any;
 
@@ -39,6 +42,10 @@ export class HomeComponent implements OnInit, AfterContentInit {
   categories: Category[] = [];
   searchedLocations = [];
   searchLocation = "";
+  subcription: { email: string } = { email: "" };
+  @ViewChild("subscriptionModal", { static: true })
+  subscriptionModal: ModalBasicComponent;
+
   search = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
@@ -61,7 +68,8 @@ export class HomeComponent implements OnInit, AfterContentInit {
     private listingService: ListingService,
     private helper: HelperService,
     private lazyLoadService: LazyLoadScriptService,
-    private _router: Router
+    private _router: Router,
+    private logger: ToastrService,
   ) {
     listingService.getListings(1, { count: 8 }).subscribe((response: any) => {
       this.handleData(response);
@@ -102,6 +110,8 @@ export class HomeComponent implements OnInit, AfterContentInit {
           });
         });
       });
+
+    this.showModal();
   }
 
   onSearch(data) {
@@ -145,6 +155,36 @@ export class HomeComponent implements OnInit, AfterContentInit {
     }
 
     return template;
+  }
+
+  showModal() {
+    if (!sessionStorage.getItem("showSubscriptionModal")) {
+      this.subscriptionModal.show();
+      sessionStorage.setItem("showSubscriptionModal", "1");
+    }
+  }
+
+  hideModal() {
+    this.subscriptionModal.hide();
+  }
+
+  onSubscribe() {
+    this.listingService
+      .onSubscribe(this.subcription)
+      .subscribe((response: any) => {
+        console.log("response", response);
+        this.logger.success(response.message);
+        this.hideModal();
+      },
+      (error) => {
+        if (error.status === 400) {
+          this.logger.error(error.error.message);
+        } else {
+          this.logger.error("something went wrong");
+        }
+        this.hideModal();
+
+      });
   }
 
   private handleData(response) {
