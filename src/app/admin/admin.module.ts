@@ -11,9 +11,10 @@ import { AdminFooterComponent } from './layout/footer/footer.component';
 import { ListingComponent } from './listing/listing.component';
 import { UserComponent } from './user/user.component';
 import { UserListingComponent } from './user-listing/user-listing.component';
+import { SubscriberComponent } from './subscriber/subscriber.component';
 
 @NgModule({
-  declarations: [DashboardComponent, AdminLayoutComponent, AdminSidebarComponent, AdminHeaderComponent, AdminFooterComponent, ListingComponent, UserComponent, UserListingComponent],
+  declarations: [DashboardComponent, AdminLayoutComponent, AdminSidebarComponent, AdminHeaderComponent, AdminFooterComponent, ListingComponent, UserComponent, UserListingComponent, SubscriberComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

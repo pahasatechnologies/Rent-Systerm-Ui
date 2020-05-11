@@ -19,16 +19,16 @@
           <div class="primary-nav-wrapper">
             <ul class="nav">
               <li class="nav-item">
-                <a routerLink="/app/home" routerLinkActiveOptions="{ exact: true }" class="nav-link">Home</a>
+                <a routerLink="/app/home" routerLinkActiveOptions="{ exact: true }" routerLinkActive="active" class="nav-link">Home</a>
               </li>
               <li class="nav-item">
-                <a routerLink="/app/featured" routerLinkActiveOptions="{ exact: true }" class="nav-link">Featured</a>
+                <a routerLink="/app/featured" routerLinkActiveOptions="{ exact: true }" routerLinkActive="active" class="nav-link">Featured</a>
               </li>
               <li class="nav-item">
-                <a routerLink="/app/listing/list" routerLinkActiveOptions="{ exact: true }" class="nav-link">Properties</a>
+                <a routerLink="/app/listing/list" routerLinkActiveOptions="{ exact: true }" routerLinkActive="active" class="nav-link">Listings</a>
               </li>
               <li class="nav-item" *ngIf="!currentUser">
-                <a routerLink="/auth/login" routerLinkActiveOptions="{ exact: true }" class="nav-link ">Login</a>
+                <a routerLink="/auth/login" routerLinkActiveOptions="{ exact: true }" routerLinkActive="active" class="nav-link ">Login</a>
               </li>
             </ul>
           </div>

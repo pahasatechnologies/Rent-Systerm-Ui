@@ -6,6 +6,7 @@ import { AdminLayoutComponent } from './layout/admin-layout.component';
 import { ListingComponent } from './listing/listing.component';
 import { UserComponent } from './user/user.component';
 import { UserListingComponent } from './user-listing/user-listing.component';
+import { SubscriberComponent } from './subscriber/subscriber.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: 'users',
         component: UserComponent
+      },
+      {
+        path: 'subscribers',
+        component: SubscriberComponent
       },
       {
         path: '**',

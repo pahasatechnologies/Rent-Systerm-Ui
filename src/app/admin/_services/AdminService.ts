@@ -56,7 +56,6 @@ export class AdminService {
       );
   }
 
-
   getLatestListing() {
     return this.http.get(`${environment.apiUrl}/listings/latest_data`).pipe(
       map((res) => res),
@@ -94,6 +93,35 @@ export class AdminService {
       })
       .pipe(
         map((res) => res),
+        catchError((error) => this.handleError(error))
+      );
+  }
+
+  getSubscriberListings(page = 1) {
+    return this.http.get(`${environment.apiUrl}/admin/subscribers`).pipe(
+      map((res) => res),
+      catchError((error) => this.handleError(error))
+    );
+  }
+
+  removeSubscriber(id: number) {
+    return this.http
+      .delete(`${environment.apiUrl}/admin/subscribers/${id}`, httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => this.handleError(error))
+      );
+  }
+
+  changeSubscriberStatus(id: number, status) {
+    return this.http
+      .post(`${environment.apiUrl}/admin/subscribers/${id}`,{status}, httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
         catchError((error) => this.handleError(error))
       );
   }

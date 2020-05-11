@@ -3,7 +3,7 @@
     <a routerLink="admin/dashboard" class="admin-page-title-back">
       <i class="fa fa-long-arrow-left"></i>
     </a>
-    <h1>Listings <small>Listings management</small></h1>
+    <h1>Subscribers</h1>
     <div class="admin-page-title-actions"></div>
     <!-- /.admin-page-title-actions -->
   </div>
@@ -35,10 +35,6 @@
               ><i class="fa fa-filter"></i> Apply filters</a
             > -->
 
-        <a routerLink="/app/listing/new" class="btn btn-primary"
-          ><i class="fa fa-plus"></i> Add New</a
-        >
-
         <!-- <a href="#" class="btn"
               ><i class="fa fa-download"></i> Export All</a
             > -->
@@ -52,53 +48,32 @@
         <thead>
           <tr>
             <th class="min-width center">ID</th>
-            <th>Title</th>
-            <th class="min-width center">Category</th>
-            <th class="min-width center">Rent</th>
-            <th class="min-width center">Featured</th>
-            <th class="min-width center">Active</th>
+            <th>Email</th>
+            <th class="min-width center">Status</th>
             <th class="min-width center">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let listing of listings; let i = index">
+          <tr *ngFor="let subscriber of subscribers; let i = index">
             <td class="min-width center id">#{{ ((activePage - 1) * recordsPerPage) + (i + 1) }}</td>
             <td>
-              <div
-                class="avatar squared"
-                [ngStyle]="{
-                  'background-image': 'url(' + listing.thumbnail + ')'
-                }"
-              ></div>
-              <h2>
-                <a [routerLink]="['/app/listing/', listing.id ,'show']">{{ listing.title }}</a>
-                <span>{{ listing.address }}</span>
-              </h2>
+              {{ subscriber.email }}
             </td>
             <td class="min-width no-wrap center">
-              <span class="tag">{{ listing.category }}</span>
+              <span class="tag">{{ subscriber.status ? "Active" : "InActive" }}</span>
             </td>
-            <td class="min-width price">Rs {{ listing.price }}</td>
-            <td class="min-width center">
-              <div class="status" *ngIf="listing.is_featured">
-                <i class="fa fa-check"></i>
-              </div>
-              <div class="status" *ngIf="!listing.is_featured">
-                <i class="fa fa-times"></i>
-              </div>
-              <!-- /.status -->
-            </td>
-            <td class="min-width center">
-              <div class="status" *ngIf="listing.is_active">
-                <i class="fa fa-check"></i>
-              </div>
-              <div class="status" *ngIf="!listing.is_active">
-                <i class="fa fa-times"></i>
-              </div>
-              <!-- /.status -->
-            </td>
+
             <td class="min-width">
               <div class="btn-group" role="group">
+                <button
+                  id="btnGroupDrop2"
+                  type="button"
+                  class="btn btn-primary"
+                  (click)="changeSubscriberStatus(subscriber, subscriber.status)"
+                >
+                {{ subscriber.status? "Deactivate" : "Activate" }}
+                </button>
+
                 <button
                   id="btnGroupDrop1"
                   type="button"
@@ -108,13 +83,12 @@
                   Actions
                 </button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" [routerLink]="['/app/listing/', listing.id ,'edit']">Edit Item</a>
-                  <a class="dropdown-item" style="cursor: pointer;" (click)="deleteListing(listing)">Delete Item</a>
+                  <a class="dropdown-item" style="cursor: pointer;" (click)="deleteSubscriber(subscriber)">Delete Item</a>
                 </div>
               </div>
             </td>
           </tr>
-          <tr *ngIf="listings.length == 0">
+          <tr *ngIf="subscribers.length == 0">
             <td colspan="7" class="text-center">No Data Found</td>
           </tr>
         </tbody>
@@ -133,20 +107,3 @@
   </div>
   <!-- /.container-fluid -->
 </div>
-
-<app-modal-basic #userModal>
-  <h2 class="app-modal-header">User Information</h2>
-  <div class="app-modal-body">
-    <div class="overview">
-      <ul>
-        <li><strong>Name</strong><span>{{ selectedUser?.first_name }} {{ selectedUser?.last_name }}</span></li>
-        <li><strong>Phone</strong><span>{{ selectedUser?.phone }}</span></li>
-        <li><strong>E-mail</strong><span>{{ selectedUser?.email }}</span></li>
-        <li><strong>Role</strong><span>{{ selectedUser?.role }}</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="app-modal-footer text-right">
-    <button class="btn btn-danger btn-sm" (click)="hideModal()">Close</button>
-  </div>
-</app-modal-basic>
