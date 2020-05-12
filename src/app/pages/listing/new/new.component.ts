@@ -27,7 +27,9 @@ export class NewComponent implements OnInit {
         this.location.back();
       },
       error => {
-        this.logger.error(error);
+        console.log(error);
+        let message = Object.values(error.error.errors).join(",")
+        this.logger.error(message);
       }
     );
   }

@@ -15,13 +15,14 @@
         name="title"
         [(ngModel)]="listing.title"
         #title="ngModel"
+        minlength="5"
         required
       />
       <div
         class="messages text-danger"
         *ngIf="title.invalid && (title.dirty || title.touched || f.submitted)"
       >
-        Title is blank or invalid
+        Title is blank or invalid or less than 5 characters
       </div>
     </div>
     <!-- /.form-group -->
@@ -376,7 +377,7 @@
           class="btn btn-success"
           (click)="fileInput.click()"
         >
-          <i class="ti-plus"></i> Edit Image
+          <i class="ti-plus"></i> Add Image
         </button>
         <p>
           <!-- <span *ngFor="let img of listing.images">{{img.name}}</span> -->

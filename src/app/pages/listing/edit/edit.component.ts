@@ -61,7 +61,9 @@ export class EditComponent implements OnInit {
          this.location.back();
       },
       error => {
-        this.logger.error(error.message);
+        console.log(error);
+        let message = Object.values(error.error.errors).join(",")
+        this.logger.error(message);
       }
     );
   }

@@ -49,7 +49,7 @@ export class ListingFormComponent implements OnInit, AfterContentInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngAfterContentInit(): void {
     if ($("#location-google-map").length !== 0) {
@@ -238,7 +238,7 @@ export class ListingFormComponent implements OnInit, AfterContentInit {
     this.listing.pincode = this.listing.pincode || resObj.pincode;
   }
 
-  getAddressFromLatLang(position, callback=this.parseInitalAddress) {
+  getAddressFromLatLang(position, callback = this.parseInitalAddress) {
     var latlng = {
       lat: parseFloat(position.coords.latitude),
       lng: parseFloat(position.coords.longitude),
@@ -263,9 +263,13 @@ export class ListingFormComponent implements OnInit, AfterContentInit {
   onFileChanged(event) {
     const files = event.target.files;
     for (const file of files) {
-      this.listing.images.push(file);
       console.log(file);
-      this.genrateThumnails(file);
+      if (file.size > 5242880) {
+        this.logger.error("File should be less than equal to 5MB");
+      } else {
+        this.listing.images.push(file);
+        this.genrateThumnails(file);
+      }
     }
   }
 
