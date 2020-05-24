@@ -20,7 +20,7 @@ const httpOptions = {
   providedIn: "root",
 })
 export class AdminService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getDashboardData() {
     return this.http.get(`${environment.apiUrl}/admin/dashboard`).pipe(
@@ -118,7 +118,7 @@ export class AdminService {
 
   changeSubscriberStatus(id: number, status) {
     return this.http
-      .post(`${environment.apiUrl}/admin/subscribers/${id}`,{status}, httpOptions)
+      .post(`${environment.apiUrl}/admin/subscribers/${id}`, { status }, httpOptions)
       .pipe(
         map((res: any) => {
           return res;
@@ -184,6 +184,29 @@ export class AdminService {
       );
   }
 
+  setFeatured(id: number, status: boolean) {
+    return this.http
+      .post(`${environment.apiUrl}/listings/${id}/set-featured`, { status }, httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => this.handleError(error))
+      );
+  }
+
+  setActiveStatus(id: number, status: boolean) {
+    return this.http
+      .post(`${environment.apiUrl}/listings/${id}/set-status`, { status }, httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => this.handleError(error))
+      );
+  }
+
+
   saveRating(id: number, rating: Review) {
     return this.http
       .post(`${environment.apiUrl}/listings/${id}/ratings`, rating, httpOptions)
@@ -238,7 +261,7 @@ export class AdminService {
         }),
         catchError((error) => this.handleError(error))
       );
-  } 
+  }
 
   isBookmarked(id: number) {
     return this.http

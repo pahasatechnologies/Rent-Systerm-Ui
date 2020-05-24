@@ -66,6 +66,22 @@ export class ListingComponent implements OnInit {
     this.userModal.hide();
   }
 
+  changeFeatured(listing: Listing) {
+    const status = !listing.is_featured;
+    this._adminService.setFeatured(listing.id, status).subscribe((response: any) => {
+      console.log("response", response);
+      this.getData();
+    });
+  }
+
+  changeStatus(listing: Listing) {
+    const status = !listing.is_active;
+    this._adminService.setActiveStatus(listing.id, status).subscribe((response: any) => {
+      console.log("response", response);
+      this.getData();
+    });
+  }
+
   private handleData(response) {
     this.listings = response.data;
     console.log(response);

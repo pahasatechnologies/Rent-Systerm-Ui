@@ -109,6 +109,26 @@
             <td class="min-width">
               <div class="btn-group" role="group">
                 <button
+                  type="button"
+                  class="btn btn-primary"
+                  (click)="changeFeatured(listing)"
+                >
+                  <span *ngIf="listing.is_featured">UnSet Featured</span>
+                  <span *ngIf="!listing.is_featured">Set Featured</span>
+                  
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-default"
+                  (click)="changeStatus(listing)"
+                >
+                  <span *ngIf="listing.is_active">Deactivate</span>
+                  <span *ngIf="!listing.is_active">Activate</span>
+                  
+                </button>
+                
+                <button
                   id="btnGroupDrop1"
                   type="button"
                   class="btn btn-secondary dropdown-toggle"
