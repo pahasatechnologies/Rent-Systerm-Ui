@@ -7,6 +7,7 @@ import { ListingComponent } from './listing/listing.component';
 import { UserComponent } from './user/user.component';
 import { UserListingComponent } from './user-listing/user-listing.component';
 import { SubscriberComponent } from './subscriber/subscriber.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
       {
         path: 'subscribers',
         component: SubscriberComponent
+      },
+      {
+        path: 'categories',
+        component: CategoryComponent
       },
       {
         path: '**',

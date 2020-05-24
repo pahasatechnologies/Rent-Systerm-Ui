@@ -19,16 +19,35 @@
           <div class="primary-nav-wrapper">
             <ul class="nav">
               <li class="nav-item">
-                <a routerLink="/app/home" routerLinkActiveOptions="{ exact: true }" routerLinkActive="active" class="nav-link">Home</a>
+                <a routerLink="/app/home" routerLinkActiveOptions="{ exact: true }" routerLinkActive="active"
+                  class="nav-link">Home</a>
               </li>
               <li class="nav-item">
-                <a routerLink="/app/featured" routerLinkActiveOptions="{ exact: true }" routerLinkActive="active" class="nav-link">Featured</a>
+                <a routerLink="/app/featured" routerLinkActiveOptions="{ exact: true }" routerLinkActive="active"
+                  class="nav-link">Featured</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a routerLink="/app/listing/list" routerLinkActiveOptions="{ exact: true }" routerLinkActive="active" class="nav-link">Listings</a>
+              </li> -->
+              <li class="nav-item has-sub-menu">
+                <a href="#" class="nav-link ">Listings</a>
+                <ul class="sub-menu">
+                  <li>
+                    <a routerLink="/app/listing/list" routerLinkActiveOptions="{ exact: true }"
+                      routerLinkActive="active">All</a>
+                  </li>
+
+                  <li *ngFor="let cat of subCategories">
+                    <a [routerLink]="['/app/listing/list']"
+                    [queryParams]="{ category: cat.id }" routerLinkActiveOptions="{ exact: true }"
+                    routerLinkActive="active" >{{cat.name}}</a>
+                  </li>
+                  
+                </ul>
               </li>
               <li class="nav-item" *ngIf="!currentUser">
-                <a routerLink="/auth/login" routerLinkActiveOptions="{ exact: true }" routerLinkActive="active" class="nav-link ">Login</a>
+                <a routerLink="/auth/login" routerLinkActiveOptions="{ exact: true }" routerLinkActive="active"
+                  class="nav-link ">Login</a>
               </li>
             </ul>
           </div>
@@ -36,23 +55,20 @@
         </div>
 
         <div class="admin-header-avatar" *ngIf="currentUser">
-          <span *ngIf="currentUser && currentUser.image"
-            class="avatar"
-            [ngStyle]="{'background-image': imageUrl}"
-          ></span>
-          <span *ngIf="!currentUser || !currentUser.image"
-          class="avatar"
-          style="background-image: url('../assets/img/tmp/user-10.jpg');"
-        ></span>
-          <span class="admin-header-avatar-name"
-            >{{ currentUser? full_name() : '' }} <i class="fa fa-chevron-down"></i
-          ></span>
+          <span *ngIf="currentUser && currentUser.image" class="avatar"
+            [ngStyle]="{'background-image': imageUrl}"></span>
+          <span *ngIf="!currentUser || !currentUser.image" class="avatar"
+            style="background-image: url('../assets/img/tmp/user-10.jpg');"></span>
+          <span class="admin-header-avatar-name">{{ currentUser? full_name() : '' }} <i
+              class="fa fa-chevron-down"></i></span>
           <ul class="admin-header-avatar-menu">
-            <li><a routerLink="/admin/dashboard" routerLinkActiveOptions="{ exact: true }" *ngIf="currentUser?.role == 'admin'">Admin</a></li>
+            <li><a routerLink="/admin/dashboard" routerLinkActiveOptions="{ exact: true }"
+                *ngIf="currentUser?.role == 'admin'">Admin</a></li>
             <li><a routerLink="/app/user/my-listings" routerLinkActiveOptions="{ exact: true }">My Listings</a></li>
             <li><a routerLink="/app/user/my-bookmarks" routerLinkActiveOptions="{ exact: true }">My Bookmarks</a></li>
             <li><a routerLink="/app/profile/edit" routerLinkActiveOptions="{ exact: true }">Your Profile</a></li>
-            <li><a routerLink="/app/profile/change-password" routerLinkActiveOptions="{ exact: true }">Change Password</a></li>
+            <li><a routerLink="/app/profile/change-password" routerLinkActiveOptions="{ exact: true }">Change
+                Password</a></li>
             <li><a routerLink="/auth/logout">Sign Out</a></li>
           </ul>
           <!-- /.admin-header-avatar-menu -->
@@ -69,7 +85,8 @@
         <div class="header-actions header-action-black" *ngIf="currentUser && currentUser?.role == 'landlord'">
           <ul class="nav nav-pills">
             <li class="nav-item">
-              <a routerLink="/app/listing/new" routerLinkActiveOptions="{ exact: true }" class="nav-link modal-submit" id="modal-action-submit">
+              <a routerLink="/app/listing/new" routerLinkActiveOptions="{ exact: true }" class="nav-link modal-submit"
+                id="modal-action-submit">
                 <i class="fa fa-plus"></i> <span>Add Listing</span>
               </a>
             </li>

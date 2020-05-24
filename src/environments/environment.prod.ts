@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://rent.brandbuyclick.com/api',
-  baseUrl: 'http://rent.brandbuyclick.com'
+  apiUrl: 'http://rent-api.brandbuyclick.com/api',
+  baseUrl: 'http://rent-api.brandbuyclick.com'
 };

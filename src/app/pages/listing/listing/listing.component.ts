@@ -36,7 +36,7 @@ export class ListingComponent implements OnInit, OnDestroy {
     this.getData();
 
     listingService.getCategories().subscribe((data: any[]) => {
-      this.categories = data;
+      this.categories = data.filter(cat => cat.parent_id);
     });
 
     listingService.getLocations().subscribe((data: any[]) => {

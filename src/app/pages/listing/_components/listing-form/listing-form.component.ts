@@ -42,7 +42,7 @@ export class ListingFormComponent implements OnInit, AfterContentInit {
     private logger: ToastrService
   ) {
     this._listingService.getCategories().subscribe((data: any[]) => {
-      this.categories = data;
+      this.categories = data.filter(cat => cat.parent_id);
       if (this.categories.length > 0)
         this.listing.category_id =
           this.listing.category_id || this.categories[0].id;

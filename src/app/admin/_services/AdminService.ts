@@ -8,6 +8,7 @@ import { environment } from "src/environments/environment";
 import { tap, map, filter, catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
 import { Listing } from "src/app/models/Listing";
+import { Category } from 'src/app/models/Category';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -204,6 +205,40 @@ export class AdminService {
         catchError((error) => this.handleError(error))
       );
   }
+
+  saveCategory(category: Category) {
+    return this.http
+      .post(`${environment.apiUrl}/categories`, category, httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => this.handleError(error))
+      );
+  }
+
+  updateCategory(id: number, category: Category) {
+    return this.http
+      .put(`${environment.apiUrl}/categories/${id}`, category, httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => this.handleError(error))
+      );
+  }
+
+
+  removeCategory(id: number) {
+    return this.http
+      .delete(`${environment.apiUrl}/categories/${id}`, httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => this.handleError(error))
+      );
+  } 
 
   isBookmarked(id: number) {
     return this.http
