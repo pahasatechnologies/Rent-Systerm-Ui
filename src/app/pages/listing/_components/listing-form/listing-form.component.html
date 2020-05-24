@@ -75,7 +75,7 @@
             <option
               *ngFor="let cat of categories; let i = index"
               [value]="cat.id"
-              >{{ cat.name | titlecase }}</option
+              >{{ cat.name | titlecase }} ({{cat.parent?.name}})</option
             >
           </select>
           <div

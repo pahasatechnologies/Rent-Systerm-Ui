@@ -52,7 +52,7 @@
                       <option
                         *ngFor="let category of categories"
                         value="{{ category.id }}"
-                        >{{ category.name | titlecase }}</option
+                        >{{ category.name | titlecase }} ({{category.parent?.name}})</option
                       >
                     </select>
                   </div>

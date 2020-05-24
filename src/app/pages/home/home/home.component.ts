@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
     });
 
     listingService.getCategories().subscribe((data: any[]) => {
-      this.categories = data;
+      this.categories = data.filter(cat => cat.parent_id);;
     });
 
     listingService.getLocations().subscribe((data: any[]) => {
