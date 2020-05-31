@@ -4,6 +4,11 @@ import { Listing } from "src/app/models/Listing";
 import { HelperService } from "src/app/helpers/helper.service";
 import { AdminService } from "../_services/AdminService";
 import { ModalBasicComponent } from 'src/app/shared/components/modal-basic/modal-basic.component';
+import { NgForm } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, tap, switchMap, catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { User } from 'src/app/models/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: "app-listing",
@@ -16,17 +21,22 @@ export class ListingComponent implements OnInit {
   totalRecords: number = 15;
   recordsPerPage: number = 5;
   selectedUser = null;
-  @ViewChild("userModal", {static: true}) userModal: ModalBasicComponent;
+  listingId = null;
+  searchUser: User = null;
+  searching = false;
+  searchFailed = false;
+  @ViewChild("userModal", { static: true }) userModal: ModalBasicComponent;
 
 
   constructor(
     private _adminService: AdminService,
-    private helper: HelperService
+    private helper: HelperService,
+    private logger: ToastrService
   ) {
     this.getData();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   getData() {
     this._adminService
@@ -35,6 +45,26 @@ export class ListingComponent implements OnInit {
         this.handleData(response);
       });
   }
+
+  formatter = (result: User) => `${result.first_name} ${result.last_name}`;
+
+  search = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      tap(() => this.searching = true),
+      switchMap(term =>
+        this._adminService.searchUser(term).pipe(
+          tap(() => this.searchFailed = false),
+          catchError(() => {
+            this.searchFailed = true;
+            return of([]);
+          }))
+      ),
+      tap(() => this.searching = false)
+    )
+
+
 
   deleteListing(listing: Listing) {
     this._adminService.removeListing(listing.id).subscribe((response: any) => {
@@ -57,13 +87,17 @@ export class ListingComponent implements OnInit {
     }
   }
 
-  displayUser(user) {
+
+  displayUser(listingId, user) {
     this.selectedUser = user;
+    this.listingId = listingId;
     this.userModal.show();
   }
 
   hideModal() {
     this.userModal.hide();
+    this.listingId = null;
+    this.searchUser = null;
   }
 
   changeFeatured(listing: Listing) {
@@ -80,6 +114,20 @@ export class ListingComponent implements OnInit {
       console.log("response", response);
       this.getData();
     });
+  }
+
+  onChangeUser(form: NgForm) {
+    console.log(form);
+    if (form.valid) {
+      this._adminService.changeListingUser(this.listingId, this.searchUser)
+        .subscribe((response: any) => {
+          this.getData();
+          this.hideModal();
+        },
+        (error: any) => {
+          this.logger.error("something went wrong");
+        });
+    }
   }
 
   private handleData(response) {

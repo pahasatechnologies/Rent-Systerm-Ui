@@ -9,6 +9,7 @@ import { tap, map, filter, catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
 import { Listing } from "src/app/models/Listing";
 import { Category } from 'src/app/models/Category';
+import { User } from 'src/app/models/user';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -100,6 +101,28 @@ export class AdminService {
 
   getSubscriberListings(page = 1) {
     return this.http.get(`${environment.apiUrl}/admin/subscribers`).pipe(
+      map((res) => res),
+      catchError((error) => this.handleError(error))
+    );
+  }
+
+  changeListingUser(id, user: User) {
+    return this.http
+      .put(`${environment.apiUrl}/admin/listings/${id}/change-user`, user, httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => this.handleError(error))
+      );
+  }
+
+  searchUser(term) {
+    return this.http.get(`${environment.apiUrl}/admin/users/search`, {
+      params: {
+        term
+      },
+    }).pipe(
       map((res) => res),
       catchError((error) => this.handleError(error))
     );

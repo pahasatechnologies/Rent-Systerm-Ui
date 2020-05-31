@@ -20,14 +20,9 @@
         </nav> -->
     <div class="table-header clearfix">
       <div class="table-header-count">
-        <strong
-          >Reacord {{ recordsPerPage * activePage }} /
-          {{ totalRecords }}</strong
-        >
-        <span style="margin-left: 10px;"
-          >(Page <strong>{{ activePage }}</strong
-          >)</span
-        >
+        <strong>Reacord {{ recordsPerPage * activePage }} /
+          {{ totalRecords }}</strong>
+        <span style="margin-left: 10px;">(Page <strong>{{ activePage }}</strong>)</span>
       </div>
       <!-- /.table-header-count -->
       <div class="table-header-actions">
@@ -35,9 +30,7 @@
               ><i class="fa fa-filter"></i> Apply filters</a
             > -->
 
-        <a routerLink="/app/listing/new" class="btn btn-primary"
-          ><i class="fa fa-plus"></i> Add New</a
-        >
+        <a routerLink="/app/listing/new" class="btn btn-primary"><i class="fa fa-plus"></i> Add New</a>
 
         <!-- <a href="#" class="btn"
               ><i class="fa fa-download"></i> Export All</a
@@ -66,12 +59,9 @@
               #{{ (activePage - 1) * recordsPerPage + (i + 1) }}
             </td>
             <td>
-              <div
-                class="avatar squared"
-                [ngStyle]="{
+              <div class="avatar squared" [ngStyle]="{
                   'background-image': 'url(' + listing.thumbnail + ')'
-                }"
-              ></div>
+                }"></div>
               <h2>
                 <a [routerLink]="['/app/listing/', listing.id, 'show']">{{
                   listing.title
@@ -84,9 +74,8 @@
             </td>
             <td class="min-width price">Rs {{ listing.price }}</td>
             <td class="min-width price">
-              <a href="javascript:;" (click)="displayUser(listing.user)">
-                {{ listing.user.first_name + " " + listing.user.last_name }}</a
-              >
+              <a href="javascript:;" (click)="displayUser(listing.id,listing.user)">
+                {{ listing.user.first_name + " " + listing.user.last_name }}</a>
             </td>
             <td class="min-width center">
               <div class="status" *ngIf="listing.is_featured">
@@ -108,46 +97,25 @@
             </td>
             <td class="min-width">
               <div class="btn-group" role="group">
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  (click)="changeFeatured(listing)"
-                >
+                <button type="button" class="btn btn-primary" (click)="changeFeatured(listing)">
                   <span *ngIf="listing.is_featured">UnSet Featured</span>
                   <span *ngIf="!listing.is_featured">Set Featured</span>
-                  
+
                 </button>
 
-                <button
-                  type="button"
-                  class="btn btn-default"
-                  (click)="changeStatus(listing)"
-                >
+                <button type="button" class="btn btn-default" (click)="changeStatus(listing)">
                   <span *ngIf="listing.is_active">Deactivate</span>
                   <span *ngIf="!listing.is_active">Activate</span>
-                  
+
                 </button>
-                
-                <button
-                  id="btnGroupDrop1"
-                  type="button"
-                  class="btn btn-secondary dropdown-toggle"
-                  data-toggle="dropdown"
-                >
+
+                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
+                  data-toggle="dropdown">
                   Actions
                 </button>
                 <div class="dropdown-menu">
-                  <a
-                    class="dropdown-item"
-                    [routerLink]="['/app/listing/', listing.id, 'edit']"
-                    >Edit Item</a
-                  >
-                  <a
-                    class="dropdown-item"
-                    style="cursor: pointer;"
-                    (click)="deleteListing(listing)"
-                    >Delete Item</a
-                  >
+                  <a class="dropdown-item" [routerLink]="['/app/listing/', listing.id, 'edit']">Edit Item</a>
+                  <a class="dropdown-item" style="cursor: pointer;" (click)="deleteListing(listing)">Delete Item</a>
                 </div>
               </div>
             </td>
@@ -157,11 +125,8 @@
     </div>
     <!-- /.table-wrapper -->
     <div class="float-right">
-      <app-pagination
-        [totalRecords]="totalRecords"
-        [recordsPerPage]="recordsPerPage"
-        (onPageChange)="displayActivePage($event)"
-      ></app-pagination>
+      <app-pagination [totalRecords]="totalRecords" [recordsPerPage]="recordsPerPage"
+        (onPageChange)="displayActivePage($event)"></app-pagination>
     </div>
   </div>
   <!-- /.container-fluid -->
@@ -178,6 +143,36 @@
         <li><strong>Role</strong><span>{{ selectedUser?.role }}</span></li>
       </ul>
     </div>
+    <ng-template #rt let-r="result" let-t="term">
+      <!-- <ngb-highlight [result]="r.first_name + ' '+r.last_name" [term]="t"></ngb-highlight> -->
+      {{r.first_name + ' '+r.last_name}}
+    </ng-template>
+    <form #f="ngForm" (submit)="onChangeUser(f)">
+      <fieldset>
+        <legend>User Information</legend>
+        <div class="row justify-content-sm-center">
+          <div class="col-sm-10 pr-0">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input id="search-user" type="text" class="form-control form-control-xl" [class.is-invalid]="searchFailed"
+                [(ngModel)]="searchUser" [ngbTypeahead]="search" name="searchUser" placeholder="search user ..."
+                [inputFormatter]="formatter" [resultTemplate]="rt" required />
+
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col-* -->
+          <div class="col-sm-2 pl-0">
+            <button type="submit" class="btn btn-primary btn-xl">
+              <i class="fa fa-search"></i> Search
+            </button>
+          </div>
+          <!-- /.col-* -->
+        </div>
+      </fieldset>
+      <hr>
+
+    </form>
   </div>
   <div class="app-modal-footer text-right">
     <button class="btn btn-danger btn-sm" (click)="hideModal()">Close</button>

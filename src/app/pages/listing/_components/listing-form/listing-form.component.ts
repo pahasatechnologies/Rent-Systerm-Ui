@@ -104,7 +104,22 @@ export class ListingFormComponent implements OnInit, AfterContentInit {
   }
 
   onSubmit(form: NgForm) {
-    if (form.value) {
+    const firstElementWithError = document.querySelector('textarea.ng-invalid, input.ng-invalid, select.ng-invalid');
+
+    if (firstElementWithError) {
+      // firstElementWithError.scrollIntoView({ behavior: 'smooth' });
+      const offset = 45;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = firstElementWithError.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    if (form.valid) {
       const formData: FormData = objectToFormData(this.listing);
       console.log(this.listing, formData.has("file"), formData.get("file"));
       this.onSubmitClick.emit(formData);
