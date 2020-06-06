@@ -1,120 +1,66 @@
 <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="mb80">
   <fieldset>
     <legend>Basic Information</legend>
-    <div
-      class="form-group"
-      [ngClass]="{
+    <div class="form-group" [ngClass]="{
         'was-validated has-danger':
           !title.valid && (title.dirty || title.touched || f.submitted)
-      }"
-    >
+      }">
       <label class="col-form-label">Title</label>
-      <input
-        type="text"
-        class="form-control"
-        name="title"
-        [(ngModel)]="listing.title"
-        #title="ngModel"
-        minlength="5"
-        required
-      />
-      <div
-        class="messages text-danger"
-        *ngIf="title.invalid && (title.dirty || title.touched || f.submitted)"
-      >
+      <input type="text" class="form-control" name="title" [(ngModel)]="listing.title" #title="ngModel" minlength="5"
+        required />
+      <div class="messages text-danger" *ngIf="title.invalid && (title.dirty || title.touched || f.submitted)">
         Title is blank or invalid or less than 5 characters
       </div>
     </div>
     <!-- /.form-group -->
-    <div
-      class="form-group"
-      [ngClass]="{
+    <div class="form-group" [ngClass]="{
         'was-validated has-danger':
           !description.valid &&
           (description.dirty || description.touched || f.submitted)
-      }"
-    >
+      }">
       <label class="col-form-label">Description</label>
-      <textarea
-        class="form-control"
-        rows="6"
-        name="description"
-        [(ngModel)]="listing.description"
-        #description="ngModel"
-        required
-      ></textarea>
-      <div
-        class="messages text-danger"
-        *ngIf="
+      <textarea class="form-control" rows="6" name="description" [(ngModel)]="listing.description"
+        #description="ngModel" required></textarea>
+      <div class="messages text-danger" *ngIf="
           description.invalid &&
           (description.dirty || description.touched || f.submitted)
-        "
-      >
+        ">
         Description is blank or invalid
       </div>
     </div>
     <!-- /.form-group -->
     <div class="row">
       <div class="col-sm-6">
-        <div
-          class="form-group"
-          [ngClass]="{
+        <div class="form-group" [ngClass]="{
             'was-validated has-danger':
               !category.valid &&
               (category.dirty || category.touched || f.submitted)
-          }"
-        >
+          }">
           <label class="col-form-label">Category</label>
-          <select
-            class="form-control"
-            name="category"
-            [(ngModel)]="listing.category_id"
-            #category="ngModel"
-            required
-          >
-            <option
-              *ngFor="let cat of categories; let i = index"
-              [value]="cat.id"
-              >{{ cat.name | titlecase }} ({{cat.parent?.name}})</option
-            >
+          <select class="form-control" name="category" [(ngModel)]="listing.category_id" #category="ngModel" required>
+            <option *ngFor="let cat of categories; let i = index" [value]="cat.id">{{ cat.name | titlecase }}
+              ({{cat.parent?.name | titlecase}})</option>
           </select>
-          <div
-            class="messages text-danger"
-            *ngIf="
+          <div class="messages text-danger" *ngIf="
               category.invalid &&
               (category.dirty || category.touched || f.submitted)
-            "
-          >
+            ">
             Category is blank or invalid
           </div>
         </div>
       </div>
 
       <div class="col-sm-6">
-        <div
-          class="form-group"
-          [ngClass]="{
+        <div class="form-group" [ngClass]="{
             'was-validated has-danger':
               !price.valid && (price.dirty || price.touched || f.submitted)
-          }"
-        >
+          }">
           <label class="col-form-label">Rent (Amount)</label>
-          <input
-            type="number"
-            pattern="[0-9]+([\.,][0-9]+)?"
-            step="0.01"
-            class="form-control"
-            name="price"
-            [(ngModel)]="listing.price"
-            #price="ngModel"
-            required
-          />
-          <div
-            class="messages text-danger"
-            *ngIf="
+          <input type="number" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" class="form-control" name="price"
+            [(ngModel)]="listing.price" #price="ngModel" required />
+          <div class="messages text-danger" *ngIf="
               price.invalid && (price.dirty || price.touched || f.submitted)
-            "
-          >
+            ">
             Price is blank or invalid
           </div>
         </div>
@@ -130,62 +76,36 @@
         <div id="location-google-map" style="height: 450px;"></div>
         <div class="row mt-4">
           <div class="col md-6">
-            <div
-              class="form-group"
-              [ngClass]="{
+            <div class="form-group" [ngClass]="{
                 'was-validated has-danger':
                   !latitude.valid &&
                   (latitude.dirty || latitude.touched || f.submitted)
-              }"
-            >
+              }">
               <label class="col-form-label">Latitude</label>
-              <input
-                type="text"
-                class="form-control"
-                id="listing_location_latitude"
-                name="latitude"
-                [(ngModel)]="listing.latitude"
-                #latitude="ngModel"
-                required
-              />
-              <div
-                class="messages text-danger"
-                *ngIf="
+              <input type="text" class="form-control" id="listing_location_latitude" name="latitude"
+                [(ngModel)]="listing.latitude" #latitude="ngModel" required />
+              <div class="messages text-danger" *ngIf="
                   latitude.invalid &&
                   (latitude.dirty || latitude.touched || f.submitted)
-                "
-              >
+                ">
                 Latitude is blank or invalid
               </div>
             </div>
             <!-- /.form-group -->
           </div>
           <div class="col md-6">
-            <div
-              class="form-group"
-              [ngClass]="{
+            <div class="form-group" [ngClass]="{
                 'was-validated has-danger':
                   !longitude.valid &&
                   (longitude.dirty || longitude.touched || f.submitted)
-              }"
-            >
+              }">
               <label class="col-form-label">Longitude</label>
-              <input
-                type="text"
-                class="form-control"
-                id="listing_location_longitude"
-                name="longitude"
-                [(ngModel)]="listing.longitude"
-                #longitude="ngModel"
-                required
-              />
-              <div
-                class="messages text-danger"
-                *ngIf="
+              <input type="text" class="form-control" id="listing_location_longitude" name="longitude"
+                [(ngModel)]="listing.longitude" #longitude="ngModel" required />
+              <div class="messages text-danger" *ngIf="
                   longitude.invalid &&
                   (longitude.dirty || longitude.touched || f.submitted)
-                "
-              >
+                ">
                 Longitude is blank or invalid
               </div>
             </div>
@@ -196,145 +116,79 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label class="col-form-label">Search Address</label>
-          <input
-            type="text"
-            class="form-control location-google-map-search"
-            name="address"
-            [(ngModel)]="listing.address"
-            #address="ngModel"
-          />
+          <input type="text" class="form-control location-google-map-search" name="address"
+            [(ngModel)]="listing.address" #address="ngModel" />
         </div>
         <!-- /.form-group -->
-        <div
-          class="form-group"
-          [ngClass]="{
+        <div class="form-group" [ngClass]="{
             'was-validated has-danger':
               !addressLineOne.valid &&
               (addressLineOne.dirty || addressLineOne.touched || f.submitted)
-          }"
-        >
+          }">
           <label class="col-form-label">Address Line One</label>
-          <input
-            type="text"
-            class="form-control"
-            name="addressLineOne"
-            [(ngModel)]="listing.addressLineOne"
-            #addressLineOne="ngModel"
-            required
-          />
-          <div
-            class="messages text-danger"
-            *ngIf="
+          <input type="text" class="form-control" name="addressLineOne" [(ngModel)]="listing.addressLineOne"
+            #addressLineOne="ngModel" required />
+          <div class="messages text-danger" *ngIf="
               addressLineOne.invalid &&
               (addressLineOne.dirty || addressLineOne.touched || f.submitted)
-            "
-          >
+            ">
             Address Line one is blank or invalid
           </div>
         </div>
         <!-- /.form-group -->
-        <div
-          class="form-group"
-          [ngClass]="{
+        <div class="form-group" [ngClass]="{
             'was-validated has-danger':
               !addressLineTwo.valid &&
               (addressLineTwo.dirty || addressLineTwo.touched || f.submitted)
-          }"
-        >
+          }">
           <label class="col-form-label">Address Line Two</label>
-          <input
-            type="text"
-            class="form-control"
-            name="addressLineTwo"
-            [(ngModel)]="listing.addressLineTwo"
-            #addressLineTwo="ngModel"
-          />
-          <div
-            class="messages text-danger"
-            *ngIf="
+          <input type="text" class="form-control" name="addressLineTwo" [(ngModel)]="listing.addressLineTwo"
+            #addressLineTwo="ngModel" />
+          <div class="messages text-danger" *ngIf="
               addressLineTwo.invalid &&
               (addressLineTwo.dirty || addressLineTwo.touched || f.submitted)
-            "
-          >
+            ">
             Address Line two is blank or invalid
           </div>
         </div>
         <!-- /.form-group -->
-        <div
-          class="form-group"
-          [ngClass]="{
+        <div class="form-group" [ngClass]="{
             'was-validated has-danger':
               !city.valid && (city.dirty || city.touched || f.submitted)
-          }"
-        >
+          }">
           <label class="col-form-label">City</label>
-          <input
-            type="text"
-            class="form-control"
-            name="city"
-            [(ngModel)]="listing.city"
-            #city="ngModel"
-            required
-          />
-          <div
-            class="messages text-danger"
-            *ngIf="city.invalid && (city.dirty || city.touched || f.submitted)"
-          >
+          <input type="text" class="form-control" name="city" [(ngModel)]="listing.city" #city="ngModel" required />
+          <div class="messages text-danger" *ngIf="city.invalid && (city.dirty || city.touched || f.submitted)">
             City is blank or invalid
           </div>
         </div>
         <!-- /.form-group -->
-        <div
-          class="form-group"
-          [ngClass]="{
+        <div class="form-group" [ngClass]="{
             'was-validated has-danger':
               !state.valid && (state.dirty || state.touched || f.submitted)
-          }"
-        >
+          }">
           <label class="col-form-label">State</label>
-          <input
-            type="text"
-            class="form-control"
-            name="state"
-            [(ngModel)]="listing.state"
-            #state="ngModel"
-            required
-          />
-          <div
-            class="messages text-danger"
-            *ngIf="
+          <input type="text" class="form-control" name="state" [(ngModel)]="listing.state" #state="ngModel" required />
+          <div class="messages text-danger" *ngIf="
               state.invalid && (state.dirty || state.touched || f.submitted)
-            "
-          >
+            ">
             State is blank or invalid
           </div>
         </div>
 
         <!-- /.form-group -->
-        <div
-          class="form-group"
-          [ngClass]="{
+        <div class="form-group" [ngClass]="{
             'was-validated has-danger':
               !pincode.valid &&
               (pincode.dirty || pincode.touched || f.submitted)
-          }"
-        >
+          }">
           <label class="col-form-label">Pincode</label>
-          <input
-            type="text"
-            class="form-control"
-            name="pincode"
-            [(ngModel)]="listing.pincode"
-            #pincode="ngModel"
-            required
-          />
-          <div
-            class="messages text-danger"
-            *ngIf="
+          <input type="text" class="form-control" name="pincode" [(ngModel)]="listing.pincode" #pincode="ngModel"
+            required />
+          <div class="messages text-danger" *ngIf="
               pincode.invalid &&
               (pincode.dirty || pincode.touched || f.submitted)
-            "
-          >
+            ">
             Pincode is blank or invalid
           </div>
         </div>
@@ -349,10 +203,7 @@
     <div class="image-upload">
       <div class="listing-pic">
         <!-- <img class="img-responsive" src="{{ fileUrl }}" /> -->
-        <div
-          class="img-wrap text-center"
-          *ngFor="let img of thumbnails; let i = index"
-        >
+        <div class="img-wrap text-center" *ngFor="let img of thumbnails; let i = index">
           <span class="close close-btn"><i class="fa fa-close"></i></span>
           <img class="img-responsive img-thumbnail" src="{{ img }}" />
           <h6 class="text-wrap text-center">{{ listing.images[i]?.name }}</h6>
@@ -364,19 +215,9 @@
         <!-- <a href="#" class="profile-usertitle-job">
                   Edit Image
                 </a> -->
-        <input
-          style="display: none"
-          accept="image/x-png,image/gif,image/jpeg"
-          type="file"
-          multiple
-          (change)="onFileChanged($event)"
-          #fileInput
-        />
-        <button
-          type="button"
-          class="btn btn-success"
-          (click)="fileInput.click()"
-        >
+        <input style="display: none" accept="image/x-png,image/gif,image/jpeg" type="file" multiple
+          (change)="onFileChanged($event)" #fileInput />
+        <button type="button" class="btn btn-success" (click)="fileInput.click()">
           <i class="ti-plus"></i> Add Image
         </button>
         <p>
@@ -384,12 +225,11 @@
         </p>
       </div>
 
-        <div class="img-wrap text-center"
-        *ngFor="let media of listing.media; let i = index">
-          <span class="close close-btn" (click)="deleteFile(media)"><i class="fa fa-close"></i></span>
-          <img class="img-responsive img-thumbnail" src="{{ getUrl(media) }}" />
-          <h6 class="text-wrap text-center">{{media?.name }}</h6>
-        </div>
+      <div class="img-wrap text-center" *ngFor="let media of listing.media; let i = index">
+        <span class="close close-btn" (click)="deleteFile(media)"><i class="fa fa-close"></i></span>
+        <img class="img-responsive img-thumbnail" src="{{ getUrl(media) }}" />
+        <h6 class="text-wrap text-center">{{media?.name }}</h6>
+      </div>
     </div>
   </fieldset>
 

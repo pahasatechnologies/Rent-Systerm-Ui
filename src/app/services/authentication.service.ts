@@ -86,6 +86,12 @@ export class AuthenticationService {
         localStorage.removeItem("token");
         this.userEmitChange(null);
         this.router.navigate(["/"]);
+      }),
+      catchError((error) => {
+        localStorage.removeItem("token");
+        this.userEmitChange(null);
+        this.router.navigate(["/"]);
+        return of(null);
       })
     );
   }

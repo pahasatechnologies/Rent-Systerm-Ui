@@ -8,6 +8,7 @@ import { ListingFormComponent } from "./_components/listing-form/listing-form.co
 import { ListingComponent } from "./listing/listing.component";
 import { ListingDetailComponent } from './listing-detail/listing-detail.component';
 import { EditComponent } from './edit/edit.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { EditComponent } from './edit/edit.component';
     ListingFormComponent,
     ListingComponent,
     ListingDetailComponent,
-    EditComponent
+    EditComponent,
+    CategoriesComponent
   ],
   imports: [CommonModule, SharedModule, ListingRoutingModule]
 })

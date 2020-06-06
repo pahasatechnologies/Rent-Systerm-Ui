@@ -5,6 +5,7 @@ import { ListingComponent } from './listing/listing.component';
 import { ListingDetailComponent } from './listing-detail/listing-detail.component';
 import { EditComponent } from './edit/edit.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { CategoriesComponent } from './categories/categories.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
         path: ":id/edit",
         component: EditComponent,
         canActivate: [AuthGuard],
+      },
+      {
+        path: "categories/:id",
+        component: CategoriesComponent,
       },
       {
         path: "**",

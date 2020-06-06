@@ -44,9 +44,10 @@
     <!-- /.hero-image-inner -->
     <div class="hero-image-categories">
       <ng-container *ngFor="let category of categories">
-        <a [routerLink]="['/app/listing/list']" [queryParams]="{ category: category.id }" class="hero-image-category">
+        <!-- <a [routerLink]="['/app/listing/list']" [queryParams]="{ category: category.id }" class="hero-image-category"> -->
+        <a [routerLink]="['/app/listing/categories/',category.id]" class="hero-image-category">
           <i class="fa fa-map-o"></i>
-          <strong>{{category.name}}</strong> </a><!-- /.hero-image-category -->
+          <strong>{{category.name | titlecase}}</strong> </a><!-- /.hero-image-category -->
       </ng-container>
     </div>
     <!-- /.hero-image-categories -->

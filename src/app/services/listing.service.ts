@@ -19,7 +19,7 @@ const httpOptions = {
   providedIn: "root"
 })
 export class ListingService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getListings(page = 1, data: any) {
     return this.http
@@ -37,11 +37,11 @@ export class ListingService {
 
   getLatestListing() {
     return this.http
-    .get(`${environment.apiUrl}/listings/latest_data`)
-    .pipe(
-      map(res => res),
-      catchError(error => this.handleError(error))
-    );
+      .get(`${environment.apiUrl}/listings/latest_data`)
+      .pipe(
+        map(res => res),
+        catchError(error => this.handleError(error))
+      );
   }
 
   getListing(listing_id) {
@@ -50,6 +50,14 @@ export class ListingService {
       catchError(error => this.handleError(error))
     );
   }
+
+  getCategory(category_id) {
+    return this.http.get(`${environment.apiUrl}/categories/${category_id}`).pipe(
+      map(res => res),
+      catchError(error => this.handleError(error))
+    );
+  }
+
 
   getCategories() {
     return this.http.get(`${environment.apiUrl}/categories`).pipe(
@@ -182,7 +190,7 @@ export class ListingService {
 
   addBookmark(id: number) {
     return this.http
-      .post(`${environment.apiUrl}/listings/${id}/bookmarks/add`, {} , httpOptions)
+      .post(`${environment.apiUrl}/listings/${id}/bookmarks/add`, {}, httpOptions)
       .pipe(
         map((res: any) => {
           return res;
@@ -224,7 +232,7 @@ export class ListingService {
       );
   }
 
-  onSubscribe(data: {email:string}) {
+  onSubscribe(data: { email: string }) {
     return this.http
       .post(`${environment.apiUrl}/subscriptions/create`, data, httpOptions)
       .pipe(

@@ -40,7 +40,7 @@
                   <li *ngFor="let cat of subCategories">
                     <a [routerLink]="['/app/listing/list']"
                     [queryParams]="{ category: cat.id }" routerLinkActiveOptions="{ exact: true }"
-                    routerLinkActive="active" >{{cat.name}} {{(cat.parent?.name)}}</a>
+                    routerLinkActive="active" >{{cat.name | titlecase}} ({{cat.parent?.name  | titlecase}})</a>
                   </li>
                   
                 </ul>

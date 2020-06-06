@@ -28,32 +28,18 @@
                 <form (submit)="f.valid && onListingSearch()" #f="ngForm">
                   <div class="form-group">
                     <label>Location</label>
-                    <select
-                      class="form-control"
-                      name="location"
-                      [(ngModel)]="search.location"
-                    >
+                    <select class="form-control" name="location" [(ngModel)]="search.location">
                       <option value="">Location</option>
-                      <option
-                        *ngFor="let location of locations"
-                        value="{{ location.state }}"
-                        >{{ location.state | titlecase }}</option
-                      >
+                      <option *ngFor="let location of locations" value="{{ location.state }}">
+                        {{ location.state | titlecase }}</option>
                     </select>
                   </div>
                   <!-- /.form-group -->
                   <div class="form-group">
-                    <select
-                      class="form-control list1"
-                      name="category"
-                      [(ngModel)]="search.category"
-                    >
+                    <select class="form-control list1" name="category" [(ngModel)]="search.category">
                       <option value="">Select Category</option>
-                      <option
-                        *ngFor="let category of categories"
-                        value="{{ category.id }}"
-                        >{{ category.name | titlecase }} ({{category.parent?.name}})</option
-                      >
+                      <option *ngFor="let category of categories" value="{{ category.id }}">
+                        {{ category.name | titlecase }} ({{category.parent?.name | titlecase}})</option>
                     </select>
                   </div>
 
@@ -89,36 +75,23 @@
                 <div class="col-md-6 col-lg-3" *ngFor="let listing of listings">
                   <div class="listing-box">
                     <div class="listing-box-inner">
-                      <a
-                        [routerLink]="['/app', 'listing', listing.id, 'show']"
-                        class="listing-box-image"
-                      >
-                        <span
-                          class="listing-box-image-content"
-                          [ngStyle]="{
+                      <a [routerLink]="['/app', 'listing', listing.id, 'show']" class="listing-box-image">
+                        <span class="listing-box-image-content" [ngStyle]="{
                             'background-image': 'url(' + listing.thumbnail + ')'
-                          }"
-                        ></span
-                        ><!-- /.listing-box-image-content -->
+                          }"></span><!-- /.listing-box-image-content -->
                         <span class="listing-box-category tag">{{
                           listing.category | titlecase
                         }}</span>
-                        <span
-                          class="listing-box-rating"
-                          [innerHTML]="buildRating(listing.rating)"
-                        ></span> </a
-                      ><!-- /.listing-box-image -->
+                        <span class="listing-box-rating" [innerHTML]="buildRating(listing.rating)"></span> </a>
+                      <!-- /.listing-box-image -->
                       <div class="listing-box-content">
                         <h2>
-                          <a
-                            [routerLink]="[
+                          <a [routerLink]="[
                               '/app',
                               'listing',
                               listing.id,
                               'show'
-                            ]"
-                            >{{ listing.title }}</a
-                          >
+                            ]">{{ listing.title }}</a>
                         </h2>
                         <h3>{{ listing.address }}</h3>
                         <!-- <div class="actions">
@@ -183,11 +156,8 @@
                   </ul> -->
 
                   <div class="float-right">
-                    <app-pagination
-                      [totalRecords]="totalRecords"
-                      [recordsPerPage]="recordsPerPage"
-                      (onPageChange)="displayActivePage($event)"
-                    ></app-pagination>
+                    <app-pagination [totalRecords]="totalRecords" [recordsPerPage]="recordsPerPage"
+                      (onPageChange)="displayActivePage($event)"></app-pagination>
                   </div>
                 </div>
                 <!-- /.col-* -->
