@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppLayoutComponent } from './layouts/app-layout.component';
+import { TermConditionsComponent } from './pages/term-conditions/term-conditions.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 const routes: Routes = [
   {
     path: '',
     // component: AppLayoutComponent,
     // canActivateChild: [AuthGuard],
-    children:[
+    children: [
       {
         path: 'app',
         component: AppLayoutComponent,
@@ -23,6 +25,16 @@ const routes: Routes = [
           {
             path: 'user',
             loadChildren: './pages/user/user.module#UserModule'
+          },
+          {
+            // path: 'terms-conditons',
+            path: 'terms',
+            component: TermConditionsComponent
+          },
+          {
+            // path: 'terms-conditons',
+            path: 'contact',
+            component: ContactComponent
           },
           {
             path: '',

@@ -16,20 +16,21 @@
             </p>
             <form method="post" (submit)="onSearch(f)" #f="ngForm">
               <div class="row justify-content-sm-center">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                   <div class="input-group">
                     <span class="input-group-addon no-border"><i class="fa fa-location-arrow"></i></span>
                     <input type="text" id="search-location" [(ngModel)]="searchLocation" [ngbTypeahead]="search"
                       class="form-control no-border form-control-xl" name="searchLocation"
                       placeholder="Type your address ..." required />
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-primary pr-2">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </div>
                   </div>
                   <!-- /.form-group -->
-                </div>
-                <!-- /.col-* -->
-                <div class="col-sm-2">
-                  <button type="submit" class="btn btn-primary btn-xl">
-                    <i class="fa fa-search"></i> Search
-                  </button>
+
+
                 </div>
                 <!-- /.col-* -->
               </div>
@@ -72,7 +73,7 @@
 
           <div class="listing-boxes">
             <div class="row mb-30">
-              <div class="col-3" *ngFor="let listing of listings">
+              <div class="col-lg-3" *ngFor="let listing of listings">
                 <div class="listing-box">
                   <div class="listing-box-inner">
                     <span class="listing-box-featured">Featured</span>

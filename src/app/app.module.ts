@@ -14,6 +14,8 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ScriptLoaderService } from "./services/script-loader.service";
 import { AppHttpInterceptorService } from "./services/http-interceptor.service";
+import { TermConditionsComponent } from './pages/term-conditions/term-conditions.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { AppHttpInterceptorService } from "./services/http-interceptor.service";
     AppHeaderComponent,
     AppSidebarComponent,
     AppFooterComponent,
+    TermConditionsComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

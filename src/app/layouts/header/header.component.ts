@@ -30,8 +30,8 @@ export class AppHeaderComponent implements OnInit, AfterContentInit {
     return `url('${environment.baseUrl + this.currentUser.image}')`;
   }
 
-  constructor(private router: Router, 
-    public auth: AuthenticationService, 
+  constructor(private router: Router,
+    public auth: AuthenticationService,
     private _listingService: ListingService) {
     router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
@@ -59,6 +59,13 @@ export class AppHeaderComponent implements OnInit, AfterContentInit {
       e.preventDefault();
 
       $("body").toggleClass("navigation-open");
+
+      $('.nav-item').not('.has-sub-menu').on('click', function (e) {
+        // e.preventDefault();
+        setTimeout(() => {
+          $('body').removeClass('navigation-open');
+        }, 200);
+      });
     });
   }
 
@@ -89,10 +96,10 @@ export class AppHeaderComponent implements OnInit, AfterContentInit {
       this.pCategories.forEach(category => {
         category.children = this.categories.filter(cat => category.id === cat.parent_id);
       });
-      console.log("parent catgories", this.pCategories);  
+      console.log("parent catgories", this.pCategories);
       const children = this.pCategories.map(cat => cat.children);
       this.subCategories = [].concat.apply([], children);
-      console.log("sub catgories", this.subCategories);  
+      console.log("sub catgories", this.subCategories);
 
 
     });

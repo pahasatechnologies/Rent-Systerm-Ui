@@ -1,0 +1,71 @@
+<div class="main-wrapper">
+    <div class="main">
+        <div class="main-inner">
+            <div class="page-title">
+                <div class="container">
+                    <h1>Contact
+                    </h1>
+                    <div class="page-title-actions">
+
+                    </div>
+                    <!-- /.page-title-actions -->
+                </div>
+                <!-- /.container-->
+            </div>
+            <!-- /.page-title -->
+            <div class="container">
+
+                <h3>We’d love to hear from you. Say us hello!</h3>
+                <div class="contact-form-wrapper mb80">
+                    <form class="contact-form" #f="ngForm" (submit)="onSendContact(f)">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="contact-form-name">Name *</label>
+                                    <input type="text" name="name" id="contact-form-name" class="form-control"
+                                        [(ngModel)]="contact.name" required>
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col-* -->
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="contact-form-subject">Subject *</label>
+                                    <input type="text" name="subject" id="contact-form-subject" class="form-control"
+                                        [(ngModel)]="contact.subject" required>
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col-* -->
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="contact-form-email">E-mail *</label>
+                                    <input type="text" name="email" id="contact-form-email" class="form-control"
+                                        [(ngModel)]="contact.email" required>
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col-* -->
+                        </div>
+                        <!-- /.row -->
+                        <div class="form-group">
+                            <label for="contact-form-message">Message *</label>
+                            <textarea class="form-control" id="contact-form-message" name="message" rows="6"
+                                [(ngModel)]="contact.message" required></textarea>
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="clearfix">
+                            <button type="submit" class="btn btn-primary pull-right">Post Message</button>
+                        </div>
+                        <!-- /.clearfix -->
+                    </form>
+                    <!-- /.contact-form -->
+                </div>
+                <!-- /.contact-form-wrapper -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.main-inner -->
+    </div>
+    <!-- /.main -->
+</div>
