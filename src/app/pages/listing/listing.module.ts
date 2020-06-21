@@ -9,6 +9,7 @@ import { ListingComponent } from "./listing/listing.component";
 import { ListingDetailComponent } from './listing-detail/listing-detail.component';
 import { EditComponent } from './edit/edit.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { InquiryFormComponent } from './_components/inquiry-form/inquiry-form.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CategoriesComponent } from './categories/categories.component';
     ListingComponent,
     ListingDetailComponent,
     EditComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    InquiryFormComponent
   ],
   imports: [CommonModule, SharedModule, ListingRoutingModule]
 })

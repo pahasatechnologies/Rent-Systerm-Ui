@@ -74,7 +74,7 @@ export class ListingDetailComponent implements OnInit, AfterContentInit {
           $(".gallery").slick({
             infinite: true,
             dots: true,
-            arrows: false,
+            arrows: true,
             slidesToShow: 1,
             slidesToScroll: 1
           });

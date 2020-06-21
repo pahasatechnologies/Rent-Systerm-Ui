@@ -282,3 +282,18 @@ a.nav-link {
 .hero-image-categories {
     bottom: 5px;
 }
+
+.slick-prev:before, .slick-next:before {
+    color: #000;
+    font-size: 40px;
+}
+
+.slick-prev {
+    left: 18px;
+    z-index: 1;
+}
+
+.slick-next {
+    right: 32px;
+    z-index: 1;
+}
