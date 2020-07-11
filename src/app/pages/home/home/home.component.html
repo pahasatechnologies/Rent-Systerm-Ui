@@ -99,13 +99,17 @@
                       <dl>
                         <dt>Rent</dt>
                         <dd>{{ listing.price }}</dd>
-                        <dt>Is Available</dt>
+                        <dt>BHK</dt>
                         <dd>
-                          {{ listing.is_active == true ? "YES" : "NO" }}
+                          {{ listing.bhk }}
                         </dd>
-                        <dt>Featured</dt>
+                        <dt>Furnishing</dt>
                         <dd>
-                          {{ listing.is_featured == false ? "YES" : "NO" }}
+                          {{ listing.furnishing }}
+                        </dd>
+                        <dt>Type</dt>
+                        <dd>
+                          {{ listing.property_type }}
                         </dd>
                       </dl>
                     </div>

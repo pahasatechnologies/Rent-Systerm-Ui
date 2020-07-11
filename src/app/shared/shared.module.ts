@@ -12,6 +12,7 @@ import { AppPaginationComponent } from './components/app-pagination/app-paginati
 import { RatingComponent } from './components/rating/rating.component';
 import { DataTableModule } from 'ng-angular8-datatable';
 import { ModalAnimationComponent } from './components/modal-animation/modal-animation.component';
+import { NouisliderModule } from 'ng2-nouislider';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ModalAnimationComponent } from './components/modal-animation/modal-anim
     HttpClientModule,
     RouterModule,
     DataTableModule,
+    NouisliderModule,
     NgbModule.forRoot(),
     NgxLoadingModule.forRoot({
       animationType: ngxLoadingAnimationTypes.rectangleBounce,
@@ -46,6 +48,7 @@ import { ModalAnimationComponent } from './components/modal-animation/modal-anim
     NgbModule,
     ControlMessages,
     NgxLoadingModule,
+    NouisliderModule,
     ModalBasicComponent,
     ModalAnimationComponent,
     ToastrModule,

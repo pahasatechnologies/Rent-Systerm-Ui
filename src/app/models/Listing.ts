@@ -9,6 +9,9 @@ export class Listing {
   thumbnail: string;
   title: string;
   description: string;
+  bhk: string;
+  furnishing: string;
+  property_type: string;
   category: string;
   category_id: number;
   is_active: boolean;

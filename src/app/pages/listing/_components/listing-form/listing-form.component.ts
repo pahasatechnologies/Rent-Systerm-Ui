@@ -35,6 +35,10 @@ export class ListingFormComponent implements OnInit, AfterContentInit {
   @ViewChild("fileInput", { static: true }) fileImportInput: any;
   @ViewChild("#f", { static: true }) form: NgForm;
 
+  bhks = ['1 RK', '1 BHK', '2 BHK','3 BHK','3+ BHK'];
+  furnishings = ['Fully Furnished', 'Semi furnished', 'Unfurnished'];
+  propertyTypes = ['Apartment','Independent house','Independent floor','Studio Duplex','Penthouse','Villa'];
+
   constructor(
     private _script: ScriptLoaderService,
     private _listingService: ListingService,

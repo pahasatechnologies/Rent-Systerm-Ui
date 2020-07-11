@@ -20,9 +20,17 @@ export class ListingComponent implements OnInit, OnDestroy {
   activePage: number = 1;
   totalRecords: number = 15;
   recordsPerPage: number = 5;
+  bhks = ['1 RK', '1 BHK', '2 BHK','3 BHK','3+ BHK'];
+  furnishings = ['Fully Furnished', 'Semi furnished', 'Unfurnished'];
+  propertyTypes = ['Apartment','Independent house','Independent floor','Studio Duplex','Penthouse','Villa'];
+
   public search: any = {
     location: "",
     category: "",
+    bhk: "",
+    furnishing: "",
+    property_type: "",
+    price: [100, 15000]
   };
 
   private sub: Subscription = null;
@@ -48,6 +56,10 @@ export class ListingComponent implements OnInit, OnDestroy {
     this.sub = this.route.queryParams.subscribe((queryParams) => {
       this.search.category = queryParams["category"] || '';
       this.search.location = queryParams["location"] || '';
+      this.search.bhk = queryParams["bhk"] || '';
+      this.search.furnishing = queryParams["furnishing"] || '';
+      this.search.property_type = queryParams["property_type"] || '';
+      
 
       this.getData();
     });

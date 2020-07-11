@@ -10072,7 +10072,7 @@ h1.hero-image-content-title-simple {
  */
 @media (max-width: 991px) {
   .table-wrapper {
-    background-image: linear-gradient(to top left, #f9f9f9, #f9f9f9), radial-gradient(100% 50%, rgba(0, 0, 0, 0.12), transparent 50%), linear-gradient(to top right, #f9f9f9, #f9f9f9), radial-gradient(100% 50%, rgba(0, 0, 0, 0.12), transparent 50%);
+    /* background-image: linear-gradient(to top left, #f9f9f9, #f9f9f9), radial-gradient(100% 50%, rgba(0, 0, 0, 0.12), transparent 50%), linear-gradient(to top right, #f9f9f9, #f9f9f9), radial-gradient(100% 50%, rgba(0, 0, 0, 0.12), transparent 50%); */
     background-attachment: local, scroll, local, scroll;
     background-position: left top, left top, right top, right top;
     background-repeat: no-repeat;

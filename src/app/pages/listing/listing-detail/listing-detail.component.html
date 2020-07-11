@@ -146,7 +146,7 @@
                         ><span>{{ listing?.city }}</span>
                       </li>
                       <li>
-                        <strong>Type</strong
+                        <strong>Category</strong
                         ><span>{{ listing?.category | titlecase }}</span>
                       </li>
                       <li>
@@ -155,14 +155,7 @@
                           {{ listing?.is_active == true ? "YES" : "NO" }}</span
                         >
                       </li>
-                      <li>
-                        <strong>Featured</strong
-                        ><span>
-                          {{
-                            listing?.is_featured == false ? "YES" : "NO"
-                          }}</span
-                        >
-                      </li>
+                      
                       <!-- <li><strong>Bedrooms</strong><span>4</span></li>
                       <li><strong>Bathrooms</strong><span>2</span></li>
                       <li><strong>Area</strong><span>180 sqft</span></li> -->
@@ -172,12 +165,35 @@
                 </div>
                 <!-- /.col-* -->
                 <div class="col-lg-7">
+                  <div class="overview">
                   <h2>Description</h2>
+                  <ul>
+                    <li>
+                      <strong>BHK</strong
+                      ><span>{{ listing?.bhk }}</span>
+                    </li>
+                    <li>
+                      <strong>Furnishing</strong
+                      ><span>{{ listing?.furnishing }}</span>
+                    </li>
+                    <li>
+                      <strong>Type</strong
+                      ><span>{{ listing?.property_type }}</span>
+                    </li>
+                    <!-- <li><strong>Bedrooms</strong><span>4</span></li>
+                    <li><strong>Bathrooms</strong><span>2</span></li>
+                    <li><strong>Area</strong><span>180 sqft</span></li> -->
+                  </ul>
+                </div>                  
+                </div>
+                <!-- /.col-* -->
+              </div>
+              <div class="row">
+                <div class="col sm-12">
                   <p>
                     {{ listing?.description }}
                   </p>
                 </div>
-                <!-- /.col-* -->
               </div>
               <!-- /.row -->
             </div>

@@ -65,8 +65,70 @@
           </div>
         </div>
       </div>
+      <!-- /.form-group -->
     </div>
-    <!-- /.form-group -->
+
+    <div class="row">
+      <div class="col-lg-4 col-sm-6">
+        <div class="form-group" [ngClass]="{
+            'was-validated has-danger':
+              !bhk.valid &&
+              (bhk.dirty || bhk.touched || f.submitted)
+          }">
+          <label class="col-form-label">BHK</label>
+          <select class="form-control" name="bhk" [(ngModel)]="listing.bhk" #bhk="ngModel" required>
+            <option *ngFor="let bhk of bhks; let i = index" [value]="bhk">{{ bhk }}
+             </option>
+          </select>
+          <div class="messages text-danger" *ngIf="
+              bhk.invalid &&
+              (bhk.dirty || bhk.touched || f.submitted)
+            ">
+            BHK is blank or invalid
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-sm-6">
+        <div class="form-group" [ngClass]="{
+            'was-validated has-danger':
+              !furnishing.valid &&
+              (furnishing.dirty || furnishing.touched || f.submitted)
+          }">
+          <label class="col-form-label">Furnishing</label>
+          <select class="form-control" name="furnishing" [(ngModel)]="listing.furnishing" #furnishing="ngModel" required>
+            <option *ngFor="let furnishing of furnishings; let i = index" [value]="furnishing">{{ furnishing }}
+             </option>
+          </select>
+          <div class="messages text-danger" *ngIf="
+              furnishing.invalid &&
+              (furnishing.dirty || furnishing.touched || f.submitted)
+            ">
+            Furnishing is blank or invalid
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-sm-6">
+        <div class="form-group" [ngClass]="{
+            'was-validated has-danger':
+              !property_type.valid &&
+              (property_type.dirty || property_type.touched || f.submitted)
+          }">
+          <label class="col-form-label">property_type</label>
+          <select class="form-control" name="property_type" [(ngModel)]="listing.property_type" #property_type="ngModel" required>
+            <option *ngFor="let propertyType of propertyTypes; let i = index" [value]="propertyType">{{ propertyType }}
+             </option>
+          </select>
+          <div class="messages text-danger" *ngIf="
+              property_type.invalid &&
+              (property_type.dirty || property_type.touched || f.submitted)
+            ">
+            property_type is blank or invalid
+          </div>
+        </div>
+      </div>
+    </div>
   </fieldset>
 
   <fieldset>

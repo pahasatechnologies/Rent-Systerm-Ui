@@ -26,7 +26,8 @@ export class ListingService {
       .get(`${environment.apiUrl}/listings`, {
         params: {
           page: page.toString(),
-          ...data
+          ...data,
+          price: data.price.join(',')
         }
       })
       .pipe(

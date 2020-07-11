@@ -50,6 +50,9 @@
                 <th>Title</th>
                 <th class="min-width center">Category</th>
                 <th class="min-width center">Rent</th>
+                <th class="min-width center">BHK</th>
+                <th class="min-width center">Furnishing</th>
+                <th class="min-width center">Type</th>
                 <th class="min-width center">Featured</th>
                 <th class="min-width center">Active</th>
                 <th class="min-width center">Actions</th>
@@ -74,6 +77,10 @@
                   <span class="tag">{{ listing.category }}</span>
                 </td>
                 <td class="min-width price">Rs {{ listing.price }}</td>
+                <td class="min-width">{{ listing.bhk }}</td>
+                <td class="min-width">{{ listing.furnishing }}</td>
+                <td class="min-width">{{ listing.property_type }}</td>
+
                 <td class="min-width center">
                   <div class="status" *ngIf="listing.is_featured">
                     <i class="fa fa-check"></i>

@@ -20,14 +20,8 @@
         <!-- /.table-header -->
         <ng-container *ngIf="listings.length > 0">
           <div class="table-wrapper">
-            <table
-              class="table table-bordered table-striped"
-              [svData]="listings"
-              #sv="svDataTable"
-              [svRowsOnPage]="5"
-              svSortBy="title"
-              svSortOrder="asc"
-            >
+            <table class="table table-bordered table-striped" [svData]="listings" #sv="svDataTable" [svRowsOnPage]="5"
+              svSortBy="title" svSortOrder="asc">
               <thead>
                 <tr>
                   <th class="min-width center">ID</th>
@@ -36,6 +30,9 @@
                   </th>
                   <th class="min-width center">Category</th>
                   <th class="min-width center">Rent</th>
+                  <th class="min-width center">BHK</th>
+                  <th class="min-width center">Furnishing</th>
+                  <th class="min-width center">Type</th>
                   <th class="min-width center">Featured</th>
                   <th class="min-width center">Active</th>
                   <th class="min-width center">Actions</th>
@@ -47,12 +44,9 @@
                     #{{ (sv.activePage - 1) * sv.rowsOnPage + (i + 1) }}
                   </td>
                   <td>
-                    <div
-                      class="avatar squared"
-                      [ngStyle]="{
+                    <div class="avatar squared" [ngStyle]="{
                         'background-image': 'url(' + listing.thumbnail + ')'
-                      }"
-                    ></div>
+                      }"></div>
                     <h2>
                       <a [routerLink]="['/app/listing/', listing.id, 'show']">{{
                         listing.title
@@ -64,6 +58,10 @@
                     <span class="tag">{{ listing.category }}</span>
                   </td>
                   <td class="min-width price">Rs {{ listing.price }}</td>
+                  <td class="min-width">{{ listing.bhk }}</td>
+                  <td class="min-width">{{ listing.furnishing }}</td>
+                  <td class="min-width">{{ listing.property_type }}</td>
+  
                   <td class="min-width center">
                     <div class="status" *ngIf="listing.is_featured">
                       <i class="fa fa-check"></i>
@@ -84,12 +82,7 @@
                   </td>
                   <td class="min-width">
                     <div class="btn-group" role="group">
-                      <button
-                        id="btnGroupDrop1"
-                        type="button"
-                        class="btn btn-danger"
-                        (click)="deleteBookmark(listing)"
-                      >
+                      <button id="btnGroupDrop1" type="button" class="btn btn-danger" (click)="deleteBookmark(listing)">
                         Delete
                       </button>
                     </div>
@@ -99,9 +92,7 @@
               <tfoot>
                 <tr>
                   <td colspan="7">
-                    <sv-bootstrap-paginator
-                      [rowsOnPageSet]="[5, 10, 25]"
-                    ></sv-bootstrap-paginator>
+                    <sv-bootstrap-paginator [rowsOnPageSet]="[5, 10, 25]"></sv-bootstrap-paginator>
                   </td>
                 </tr>
               </tfoot>

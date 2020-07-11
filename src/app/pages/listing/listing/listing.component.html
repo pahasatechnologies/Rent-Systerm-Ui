@@ -26,6 +26,12 @@
                 </div> -->
                 <!-- /.form-group -->
                 <form (submit)="f.valid && onListingSearch()" #f="ngForm">
+
+                  <div class="form-group">
+                    <label>Price Slider</label>
+                    <nouislider class="price-slider" name="price" [connect]="true" [step]="100" [min]="0" [max]="20000" [tooltips]="[ true, true ]" [(ngModel)]="search.price"></nouislider>
+                  </div>
+
                   <div class="form-group">
                     <label>Location</label>
                     <select class="form-control" name="location" [(ngModel)]="search.location">
@@ -42,6 +48,31 @@
                         {{ category.name | titlecase }} ({{category.parent?.name | titlecase}})</option>
                     </select>
                   </div>
+
+                  <div class="form-group">
+                    <select class="form-control list1" name="bhk" [(ngModel)]="search.bhk">
+                      <option value="">Select BHK</option>
+                      <option *ngFor="let bhk of bhks; let i = index" [value]="bhk">{{ bhk }}
+                       </option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <select class="form-control list1" name="furnishing" [(ngModel)]="search.furnishing">
+                      <option value="">Select Furnishing</option>
+                      <option *ngFor="let furnishing of furnishings; let i = index" [value]="furnishing">{{ furnishing }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <select class="form-control list1" name="property_type" [(ngModel)]="search.property_type">
+                      <option value="">Select Property Type</option>
+                      <option *ngFor="let propertyType of propertyTypes; let i = index" [value]="propertyType">{{ propertyType }}
+                      </option>
+                    </select>
+                  </div>
+
 
                   <!-- <div class="checkbox">
                   <label
@@ -71,7 +102,7 @@
           <!-- /.col-* -->
           <div class="col-sm-8 col-md-9">
             <div class="content">
-              <div class="row">
+              <div class="row" *ngIf="listings?.length > 0">
                 <div class="col-md-6 col-lg-3" *ngFor="let listing of listings">
                   <div class="listing-box">
                     <div class="listing-box-inner">
@@ -113,13 +144,17 @@
                         <dl>
                           <dt>Rent</dt>
                           <dd>{{ listing.price }}</dd>
-                          <dt>Is Available</dt>
+                          <dt>BHK</dt>
                           <dd>
-                            {{ listing.is_active == true ? "YES" : "NO" }}
+                            {{ listing.bhk }}
                           </dd>
-                          <dt>Featured</dt>
+                          <dt>Furnishing</dt>
                           <dd>
-                            {{ listing.is_featured == false ? "YES" : "NO" }}
+                            {{ listing.furnishing }}
+                          </dd>
+                          <dt>Type</dt>
+                          <dd>
+                            {{ listing.property_type }}
                           </dd>
                         </dl>
                       </div>
@@ -139,6 +174,11 @@
                   <!-- /.listing-box -->
                 </div>
                 <!-- /.col-* -->
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="text-center text-warning">No Data Found</h4>
+                </div>  
               </div>
               <!-- /.row -->
               <div class="row">
