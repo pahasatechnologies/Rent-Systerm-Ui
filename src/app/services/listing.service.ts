@@ -22,12 +22,14 @@ export class ListingService {
   constructor(private http: HttpClient) { }
 
   getListings(page = 1, data: any) {
+    if(data.price && data.price.length > 0) {
+      data.price = data.price.join(',')
+    }
     return this.http
       .get(`${environment.apiUrl}/listings`, {
         params: {
           page: page.toString(),
-          ...data,
-          price: data.price.join(',')
+          ...data
         }
       })
       .pipe(
