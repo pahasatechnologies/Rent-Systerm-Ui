@@ -23,7 +23,7 @@ export class ListingComponent implements OnInit, OnDestroy {
   bhks = ['1 RK', '1 BHK', '2 BHK','3 BHK','3+ BHK'];
   furnishings = ['Fully Furnished', 'Semi furnished', 'Unfurnished'];
   propertyTypes = ['Apartment','Independent house','Independent floor','Studio Duplex','Penthouse','Villa'];
-
+  price = [100, 15000]
   public search: any = {
     location: "",
     category: "",
@@ -59,7 +59,9 @@ export class ListingComponent implements OnInit, OnDestroy {
       this.search.bhk = queryParams["bhk"] || '';
       this.search.furnishing = queryParams["furnishing"] || '';
       this.search.property_type = queryParams["property_type"] || '';
-      
+      this.search.price = queryParams["price"] || [100, 15000];
+      this.price = this.search.price;
+      console.log("SEARCH", this.search);
 
       this.getData();
     });
@@ -109,11 +111,20 @@ export class ListingComponent implements OnInit, OnDestroy {
     this.search = {
       location: "",
       category: "",
+      bhk: "",
+      furnishing: "",
+      property_type: "",
+      price: [100, 15000]
     };
 
     this._router.navigate(["/app/listing/list"], {
       queryParams: { ...this.search },
     });
+  }
+
+  onPriceChange(event: Event) {
+    console.log("event", event);
+    this.search.price = event;
   }
 
   buildRating(rating) {

@@ -29,7 +29,8 @@
 
                   <div class="form-group">
                     <label>Price Slider</label>
-                    <nouislider class="price-slider" name="price" [connect]="true" [step]="100" [min]="0" [max]="20000" [tooltips]="[ true, true ]" [(ngModel)]="search.price"></nouislider>
+                    <nouislider class="price-slider" name="price" [connect]="true" [min]="0" [max]="20000" [step]="100"
+                      [(ngModel)]="price" (ngModelChange)="onPriceChange($event)" [tooltips]="[true, true]"></nouislider>
                   </div>
 
                   <div class="form-group">
@@ -53,14 +54,15 @@
                     <select class="form-control list1" name="bhk" [(ngModel)]="search.bhk">
                       <option value="">Select BHK</option>
                       <option *ngFor="let bhk of bhks; let i = index" [value]="bhk">{{ bhk }}
-                       </option>
+                      </option>
                     </select>
                   </div>
 
                   <div class="form-group">
                     <select class="form-control list1" name="furnishing" [(ngModel)]="search.furnishing">
                       <option value="">Select Furnishing</option>
-                      <option *ngFor="let furnishing of furnishings; let i = index" [value]="furnishing">{{ furnishing }}
+                      <option *ngFor="let furnishing of furnishings; let i = index" [value]="furnishing">
+                        {{ furnishing }}
                       </option>
                     </select>
                   </div>
@@ -68,7 +70,8 @@
                   <div class="form-group">
                     <select class="form-control list1" name="property_type" [(ngModel)]="search.property_type">
                       <option value="">Select Property Type</option>
-                      <option *ngFor="let propertyType of propertyTypes; let i = index" [value]="propertyType">{{ propertyType }}
+                      <option *ngFor="let propertyType of propertyTypes; let i = index" [value]="propertyType">
+                        {{ propertyType }}
                       </option>
                     </select>
                   </div>
@@ -178,7 +181,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <h4 class="text-center text-warning">No Data Found</h4>
-                </div>  
+                </div>
               </div>
               <!-- /.row -->
               <div class="row">

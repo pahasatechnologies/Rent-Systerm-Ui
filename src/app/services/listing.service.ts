@@ -22,7 +22,8 @@ export class ListingService {
   constructor(private http: HttpClient) { }
 
   getListings(page = 1, data: any) {
-    if(data.price && data.price.length > 0) {
+    console.log(typeof data.price)    
+    if(data.price && Array.isArray(data.price) && data.price.length > 0) {
       data.price = data.price.join(',')
     }
     return this.http
