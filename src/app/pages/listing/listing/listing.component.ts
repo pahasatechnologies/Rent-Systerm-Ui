@@ -17,6 +17,7 @@ export class ListingComponent implements OnInit, OnDestroy {
   listings: Listing[] = [];
   locations: any[] = [];
   categories: Category[] = [];
+  activeCategory: Category;
   activePage: number = 1;
   totalRecords: number = 15;
   recordsPerPage: number = 5;
@@ -72,6 +73,7 @@ export class ListingComponent implements OnInit, OnDestroy {
       .getListings(this.activePage, this.search)
       .subscribe((response: any) => {
         this.handleData(response);
+        this.onCategoryChange();
       });
   }
 
@@ -125,6 +127,15 @@ export class ListingComponent implements OnInit, OnDestroy {
   onPriceChange(event: Event) {
     console.log("event", event);
     this.search.price = event;
+  }
+
+  onCategoryChange() {
+    this.activeCategory = this.categories.find(c => c.id == this.search.category);
+    // console.log("onChange", cat, this.search.category, this.categories);
+    if(this.activeCategory && this.activeCategory.parent && this.activeCategory.parent.name !== 'commercial') {
+      this.search.bhk = '';
+      this.search.property_type = '';
+    }
   }
 
   buildRating(rating) {

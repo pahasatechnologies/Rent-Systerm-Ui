@@ -30,7 +30,8 @@
                   <div class="form-group">
                     <label>Price Slider</label>
                     <nouislider class="price-slider" name="price" [connect]="true" [min]="0" [max]="20000" [step]="100"
-                      [(ngModel)]="price" (ngModelChange)="onPriceChange($event)" [tooltips]="[true, true]"></nouislider>
+                      [(ngModel)]="price" (ngModelChange)="onPriceChange($event)" [tooltips]="[true, true]">
+                    </nouislider>
                   </div>
 
                   <div class="form-group">
@@ -43,20 +44,33 @@
                   </div>
                   <!-- /.form-group -->
                   <div class="form-group">
-                    <select class="form-control list1" name="category" [(ngModel)]="search.category">
+                    <select class="form-control list1" name="category" [(ngModel)]="search.category" (change)="onCategoryChange()">
                       <option value="">Select Category</option>
                       <option *ngFor="let category of categories" value="{{ category.id }}">
                         {{ category.name | titlecase }} ({{category.parent?.name | titlecase}})</option>
                     </select>
                   </div>
 
-                  <div class="form-group">
-                    <select class="form-control list1" name="bhk" [(ngModel)]="search.bhk">
-                      <option value="">Select BHK</option>
-                      <option *ngFor="let bhk of bhks; let i = index" [value]="bhk">{{ bhk }}
-                      </option>
-                    </select>
-                  </div>
+                  <ng-container *ngIf="activeCategory?.parent?.name !== 'commercial'">
+
+                    <div class="form-group">
+                      <select class="form-control list1" name="bhk" [(ngModel)]="search.bhk">
+                        <option value="">Select BHK</option>
+                        <option *ngFor="let bhk of bhks; let i = index" [value]="bhk">{{ bhk }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <select class="form-control list1" name="property_type" [(ngModel)]="search.property_type">
+                        <option value="">Select Property Type</option>
+                        <option *ngFor="let propertyType of propertyTypes; let i = index" [value]="propertyType">
+                          {{ propertyType }}
+                        </option>
+                      </select>
+                    </div>
+                  </ng-container>
+
 
                   <div class="form-group">
                     <select class="form-control list1" name="furnishing" [(ngModel)]="search.furnishing">
@@ -66,16 +80,6 @@
                       </option>
                     </select>
                   </div>
-
-                  <div class="form-group">
-                    <select class="form-control list1" name="property_type" [(ngModel)]="search.property_type">
-                      <option value="">Select Property Type</option>
-                      <option *ngFor="let propertyType of propertyTypes; let i = index" [value]="propertyType">
-                        {{ propertyType }}
-                      </option>
-                    </select>
-                  </div>
-
 
                   <!-- <div class="checkbox">
                   <label
