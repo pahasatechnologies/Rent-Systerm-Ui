@@ -3,27 +3,15 @@
         <div class="main-inner">
             <div class="page-title">
                 <div class="container">
-                    <h1>Category
+                    <h1>
+                        <span class="title">{{ category?.name | titlecase }}</span>
                     </h1>
                     <!-- /.page-title-actions -->
                 </div>
                 <!-- /.container-->
             </div>
             <!-- /.page-title -->
-            <div class="container">
-                <div class="progress-steps">
-                    <div class="row">
-                        <div class="col-sm-3 col-md-3">
-                            <a class="progress-step done" style="cursor: pointer;">
-                                <i class="fa fa-check"></i>
-                                <span class="title">{{ category?.name | titlecase }}</span>
-                            </a>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.progress-steps -->
+            <div class="container" style="min-height: 75vh;">
                 <div class="row">
                     <div class="col-sm-12">
                         <!-- /.listing-row -->
@@ -35,13 +23,14 @@
                                 <!-- /.box-title -->
                                 <div class="">
                                     <div class="extras-item" *ngFor="let cat of category?.children">
-                                        <div class="row">                                          
+                                        <div class="row">
                                             <!-- /.col -->
                                             <div class="col-xs-12 col-sm-6 col-md-6">
                                                 <div class="title">
                                                     <a [routerLink]="['/app/listing/list']"
                                                         [queryParams]="{ category: cat.id }">
-                                                        <i class="fa fa-diamond"></i>  {{ cat.name | titlecase }}
+                                                        <i class="fa fa-th-large"></i> &nbsp;&nbsp;
+                                                        {{ cat.name | titlecase }}
                                                     </a>
                                                 </div>
                                             </div>

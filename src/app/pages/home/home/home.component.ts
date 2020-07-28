@@ -71,13 +71,13 @@ export class HomeComponent implements OnInit, AfterContentInit {
     private _router: Router,
     private logger: ToastrService,
   ) {
-    listingService.getListings(1, { count: 8 }).subscribe((response: any) => {
+    listingService.getTopListing().subscribe((response: any) => {
       this.handleData(response);
     });
 
-    listingService.getCategories().subscribe((data: any[]) => {
-      this.categories = data.filter(cat => !cat.parent_id);;
-    });
+    // listingService.getCategories().subscribe((data: any[]) => {
+    //   this.categories = data.filter(cat => !cat.parent_id);;
+    // });
 
     listingService.getLocations().subscribe((data: any[]) => {
       this.locations = data;
@@ -188,7 +188,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
   }
 
   private handleData(response) {
-    this.listings = response.data;
+    this.listings = response;
     this.listings.forEach((listing: Listing) => {
       listing.thumbnail = this.getUrl(listing);
     });

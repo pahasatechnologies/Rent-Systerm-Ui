@@ -48,7 +48,7 @@ export class AppHeaderComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     this.auth.getUser().subscribe();
-    this.getCategories();
+    // this.getCategories();
   }
 
   ngAfterContentInit() {

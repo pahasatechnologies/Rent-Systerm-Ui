@@ -48,6 +48,16 @@ export class ListingService {
       );
   }
 
+
+  getTopListing() {
+    return this.http
+      .get(`${environment.apiUrl}/listings/top_data`)
+      .pipe(
+        map(res => res),
+        catchError(error => this.handleError(error))
+      );
+  }
+
   getListing(listing_id) {
     return this.http.get(`${environment.apiUrl}/listings/${listing_id}`).pipe(
       map(res => res),

@@ -44,12 +44,20 @@
     </div>
     <!-- /.hero-image-inner -->
     <div class="hero-image-categories">
-      <ng-container *ngFor="let category of categories">
-        <!-- <a [routerLink]="['/app/listing/list']" [queryParams]="{ category: category.id }" class="hero-image-category"> -->
+      <!-- <ng-container *ngFor="let category of categories">
         <a [routerLink]="['/app/listing/categories/',category.id]" class="hero-image-category">
           <i class="fa fa-map-o"></i>
-          <strong>{{category.name | titlecase}}</strong> </a><!-- /.hero-image-category -->
-      </ng-container>
+          <strong>{{category.name | titlecase}}</strong> </a>
+        </ng-container> -->
+        <a [routerLink]="['/app/listing/categories', 1]" class="hero-image-category">
+          <i class="fa fa-map-o"></i>
+          <strong>Residential</strong>  
+        </a>
+
+        <a [routerLink]="['/app/listing/categories', 2]" class="hero-image-category">
+          <i class="fa fa-building"></i>
+          <strong>Commercial</strong>    
+        </a>
     </div>
     <!-- /.hero-image-categories -->
   </div>
